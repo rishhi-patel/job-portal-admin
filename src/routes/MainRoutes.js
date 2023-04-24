@@ -15,7 +15,7 @@ const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialI
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
 // sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+const Candidates = Loadable(lazy(() => import('views/candidates/index')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -82,8 +82,8 @@ const MainRoutes = {
             ]
         },
         {
-            path: 'sample-page',
-            element: <SamplePage />
+            path: 'candidates',
+            element: <Candidates />
         }
     ]
 };
