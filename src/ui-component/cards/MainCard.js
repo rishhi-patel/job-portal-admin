@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 
 // constant
 const headerSX = {
@@ -26,6 +26,8 @@ const MainCard = forwardRef(
             shadow,
             sx = {},
             title,
+            btnText,
+            btnEvent,
             ...others
         },
         ref
@@ -42,20 +44,27 @@ const MainCard = forwardRef(
                     ':hover': {
                         boxShadow: boxShadow ? shadow || '0 2px 14px 0 rgb(32 40 45 / 8%)' : 'inherit'
                     },
+                    position: 'relative',
                     ...sx
                 }}
             >
                 {/* card header and action */}
+                {btnText && (
+                    <Button variant="contained" color="secondary" sx={{ position: 'absolute', right: 0, m: 2 }} onClick={btnEvent}>
+                        {btnText}
+                    </Button>
+                )}
                 {title && (
                     <CardHeader
                         sx={headerSX}
                         title={darkTitle ? <Typography variant="h3">{title}</Typography> : title}
                         action={secondary}
-                    />
+                    ></CardHeader>
                 )}
 
                 {/* content & header divider */}
                 {title && <Divider />}
+                {/* {EndComponent && <EndComponent />} */}
 
                 {/* card content */}
                 {content && (

@@ -15,7 +15,12 @@ const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialI
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
 // sample page routing
-const Candidates = Loadable(lazy(() => import('views/candidates/index')));
+const Candidates = Loadable(lazy(() => import('views/candidates/CandidatesMain')));
+const CandidateDetails = Loadable(lazy(() => import('views/candidateDetails/CandidateDetailsMain')));
+const Jobs = Loadable(lazy(() => import('views/jobs/JobsMain')));
+const JobDetailsMain = Loadable(lazy(() => import('views/jobDetails/JobDetailsMain')));
+const Categories = Loadable(lazy(() => import('views/category/CategoriesMain')));
+// const candidateDetails = Loadable(lazy(() => import()));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -24,15 +29,31 @@ const MainRoutes = {
     element: <MainLayout />,
     children: [
         {
-            path: '*',
-            element: <DashboardDefault />
-        },
-        {
             path: 'dashboard',
             children: [
                 {
                     path: 'default',
                     element: <DashboardDefault />
+                },
+                {
+                    path: 'candidates',
+                    element: <Candidates />
+                },
+                {
+                    path: 'candidates/:id',
+                    element: <CandidateDetails />
+                },
+                {
+                    path: 'jobs',
+                    element: <Jobs />
+                },
+                {
+                    path: 'jobs/:id',
+                    element: <JobDetailsMain />
+                },
+                {
+                    path: 'category',
+                    element: <Categories />
                 }
             ]
         },
@@ -80,10 +101,6 @@ const MainRoutes = {
                     element: <UtilsMaterialIcons />
                 }
             ]
-        },
-        {
-            path: 'candidates',
-            element: <Candidates />
         }
     ]
 };

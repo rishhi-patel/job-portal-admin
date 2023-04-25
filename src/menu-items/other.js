@@ -1,5 +1,5 @@
 // assets
-import { IconUserCircle, IconBriefcase, IconBoxMultiple } from '@tabler/icons';
+import { IconUserCircle, IconBriefcase, IconBoxMultiple, IconDashboard } from '@tabler/icons';
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -8,10 +8,18 @@ const other = {
     type: 'group',
     children: [
         {
+            id: 'default',
+            title: 'Dashboard',
+            type: 'item',
+            url: '/dashboard/default',
+            icon: IconDashboard,
+            breadcrumbs: false
+        },
+        {
             id: 'candidates',
             title: 'Candidates',
             type: 'item',
-            url: '/candidates',
+            url: '/dashboard/candidates',
             icon: IconUserCircle,
             breadcrumbs: false
         },
@@ -19,7 +27,7 @@ const other = {
             id: 'category',
             title: 'Category',
             type: 'item',
-            url: '/category',
+            url: '/dashboard/category',
             icon: IconBoxMultiple,
             breadcrumbs: false
         },
@@ -27,7 +35,7 @@ const other = {
             id: 'jobs',
             title: 'Jobs',
             type: 'item',
-            url: '/jobs ',
+            url: '/dashboard/jobs ',
             icon: IconBriefcase,
             breadcrumbs: false
         }

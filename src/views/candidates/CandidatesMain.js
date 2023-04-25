@@ -4,6 +4,9 @@ import MainCard from 'ui-component/cards/MainCard';
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import Switch from '@mui/material/Switch';
+import { useNavigate } from 'react-router';
+import { IconEye } from '@tabler/icons';
+import { Link } from 'react-router-dom';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -66,14 +69,14 @@ const dataList = [
     }
 ];
 
-const Candidates = () => {
+const CandidatesMain = () => {
+    const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const handleChangePage = (_, newPage) => {
         setPage(newPage);
     };
-    // const history = useHistory();
     const handleView = () => {
         // history.push('/app/pages/product/data-view');
     };
@@ -82,48 +85,47 @@ const Candidates = () => {
         setPage(0);
     };
 
+    // Information required is
+    // Full Name (First Name - Last Name)
+    // Passport No.
+    // Nationality
+    // Phone No. 1
+    // Phone No. 2
+    // Emial ID
+    // FB ID
+
+    // Profession (From Drop Down List) (Eg. Hotel / Construction / General / Welder / CNC)
+
+    // Current Employer (Optional)
+
+    // Residence Card Expiry Date (Optional)
     return (
         <MainCard title="Candidates">
-            <Box className="plan">
+            <Box className="plan" style={{ overflowY: 'auto' }}>
                 <StyledTable>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">
-                                <text>Customer Name</text>
-                            </TableCell>
+                            <TableCell align="center">ID</TableCell>
+                            <TableCell align="center">Name</TableCell>
                             <TableCell align="center">Mobile</TableCell>
                             <TableCell align="center" width="200px">
-                                {' '}
                                 Email
                             </TableCell>
-                            <TableCell align="center">Block / Unblock </TableCell>
+
                             <TableCell align="center">View</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody style={{ padding: '10px' }}>
-                        {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((userData) => (
+                        {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((userData, i) => (
                             <TableRow key={userData.id}>
+                                <TableCell align="center">#{i + 1}</TableCell>
                                 <TableCell align="center">{userData.userName}</TableCell>
                                 <TableCell align="center">{userData.mobile}</TableCell>
                                 <TableCell align="center">{userData.email}</TableCell>
-                                <TableCell align="center" className="-webkit-center">
-                                    <div className="switch">
-                                        <Switch {...label} />
-                                    </div>
-                                </TableCell>
-
                                 <TableCell align="center">
-                                    <i
-                                        className="simple-icon-eye"
-                                        onClick={handleView}
-                                        onKeyDown={handleView}
-                                        aria-hidden="true"
-                                        style={{
-                                            cursor: 'pointer',
-                                            fontSize: '20px',
-                                            color: '#6fb326'
-                                        }}
-                                    />
+                                    <Link to={'1'}>
+                                        <IconEye />
+                                    </Link>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -148,4 +150,4 @@ const Candidates = () => {
     );
 };
 
-export default Candidates;
+export default CandidatesMain;
