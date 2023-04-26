@@ -27,45 +27,38 @@ const StyledTable = styled(Table)(() => ({
 const dataList = [
     {
         id: 1,
-        userName: 'Jay Patel',
-        mobile: '9876543211',
-        email: 'johntest@gmail.com',
-        status: 'block'
+        jobPosition: 'Jr. React Developer',
+        Industry: 'IT',
+        Salary: '20k - 80k',
+        JobLocation: ' US'
     },
     {
         id: 2,
-        userName: 'Mayank tejani',
-        mobile: '9126543211',
-        email: 'mayanktejani@gmail.com',
-        status: 'block'
+        jobPosition: 'Sr. React Developer',
+        Industry: 'IT',
+        Salary: '20k - 80k',
+        JobLocation: ' US'
     },
     {
         id: 3,
-        userName: 'Kuldeep Yadav',
-        mobile: '9876577777',
-        email: 'Kuldeep23@gmail.com',
-        status: 'block'
+        jobPosition: 'Sr. React Developer',
+        Industry: 'IT',
+        Salary: '20k - 80k',
+        JobLocation: ' US'
     },
     {
         id: 4,
-        userName: 'Divya Sharma',
-        mobile: '9872243211',
-        email: 'divyasharma34@gmail.com',
-        status: 'block'
+        jobPosition: 'Jr. React Developer',
+        Industry: 'IT',
+        Salary: '20k - 80k',
+        JobLocation: ' US'
     },
     {
         id: 5,
-        userName: 'Krupa Pandit',
-        mobile: '9922771188',
-        email: 'krupapandit90@gmail.com',
-        status: 'block'
-    },
-    {
-        id: 6,
-        userName: 'Harsh Mevani',
-        mobile: '6790126733',
-        email: 'harshmevani9@gmail.com',
-        status: 'block'
+        jobPosition: 'Jr. React Developer',
+        Industry: 'IT',
+        Salary: '20k - 80k',
+        JobLocation: ' US'
     }
 ];
 
@@ -87,33 +80,26 @@ const JobsMain = () => {
 
     return (
         <MainCard title="Jobs" btnText="+ Add Job">
-            <Box className="plan">
+            <Box className="plan" style={{ overflowY: 'auto' }}>
                 <StyledTable>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">
-                                <text>Customer Name</text>
-                            </TableCell>
-                            <TableCell align="center">Mobile</TableCell>
-                            <TableCell align="center" width="200px">
-                                {' '}
-                                Email
-                            </TableCell>
-                            <TableCell align="center">Block / Unblock </TableCell>
+                            <TableCell align="center">No</TableCell>
+                            <TableCell align="center">Job Position</TableCell>
+                            <TableCell align="center">Industry</TableCell>
+                            <TableCell align="center">Salary </TableCell>
+                            <TableCell align="center">Job location </TableCell>
                             <TableCell align="center">View</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody style={{ padding: '10px' }}>
-                        {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((userData) => (
-                            <TableRow key={userData.id}>
-                                <TableCell align="center">{userData.userName}</TableCell>
-                                <TableCell align="center">{userData.mobile}</TableCell>
-                                <TableCell align="center">{userData.email}</TableCell>
-                                <TableCell align="center" className="-webkit-center">
-                                    <div className="switch">
-                                        <Switch {...label} />
-                                    </div>
-                                </TableCell>
+                        {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((jobData) => (
+                            <TableRow key={jobData.id}>
+                                <TableCell align="center">{jobData.id}</TableCell>
+                                <TableCell align="center">{jobData.jobPosition}</TableCell>
+                                <TableCell align="center">{jobData.Industry}</TableCell>
+                                <TableCell align="center">{jobData.Salary}</TableCell>
+                                <TableCell align="center">{jobData.JobLocation}</TableCell>
 
                                 <TableCell align="center">
                                     <Link to={'1'}>

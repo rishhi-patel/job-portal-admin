@@ -16,7 +16,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomInput from 'views/candidateDetails/CustomInput';
 import MainCard from 'ui-component/cards/MainCard';
-
+import TextareaAutosize from '@mui/base/TextareaAutosize';
+import UnstyledInputBasic from 'views/candidateDetails/CustomTextArea';
 //APP
 export default function JobDetailsMain(props) {
     //TAB STATES
@@ -26,15 +27,18 @@ export default function JobDetailsMain(props) {
         setValue(newValue);
     };
 
-    // GENDER SELECT STATES
-    const genderSelect = [
+    const shifts = [
         {
-            value: 'male',
-            label: 'Male'
+            value: 'first',
+            label: 'First'
         },
         {
-            value: 'female',
-            label: 'Female'
+            value: 'second',
+            label: 'Second'
+        },
+        {
+            value: 'night',
+            label: 'night'
         }
     ];
 
@@ -81,115 +85,106 @@ export default function JobDetailsMain(props) {
     //RETURN
     return (
         <MainCard title="Job Details">
-            <Card variant="outlined" sx={{ height: '100%', width: '100%' }}>
-                {/* TABS */}
+            {/* TABS */}
 
-                {/* MAIN CONTENT CONTAINER */}
-                <form>
-                    <CardContent
-                        sx={{
-                            p: 3,
-                            // maxHeight: { md: '40vh' },
-                            textAlign: { xs: 'center', md: 'start' }
-                        }}
-                    >
-                        {/* FIELDS */}
-                        <FormControl fullWidth>
-                            <Grid container direction={{ xs: 'column', md: 'row' }} columnSpacing={5} rowSpacing={3}>
-                                {/* ROW 1: FIRST NAME */}
+            {/* MAIN CONTENT CONTAINER */}
+            <form>
+                <CardContent
+                    sx={{
+                        p: 3,
+                        // maxHeight: { md: '40vh' },
+                        textAlign: { xs: 'center', md: 'start' }
+                    }}
+                >
+                    {/* FIELDS */}
+                    <FormControl fullWidth>
+                        <Grid container direction={{ xs: 'column', md: 'row' }} columnSpacing={5} rowSpacing={3}>
+                            {/* ROW 1: FIRST NAME */}
 
-                                <Grid component="form" item xs={6}>
-                                    <CustomInput
-                                        id="firstName"
-                                        name="firstName"
-                                        value={user.firstName}
-                                        onChange={changeField}
-                                        title="First Name"
-                                    ></CustomInput>
-                                </Grid>
+                            <Grid component="form" item xs={6}>
+                                <CustomInput
+                                    id="Job position"
+                                    name="Job position"
+                                    value={user.firstName}
+                                    onChange={changeField}
+                                    title="Job Position"
+                                ></CustomInput>
+                            </Grid>
 
-                                {/* ROW 1: LAST NAME */}
-                                <Grid component="form" item xs={6}>
-                                    <CustomInput
-                                        id="lastName"
-                                        name="lastName"
-                                        value={user.lastName}
-                                        onChange={changeField}
-                                        title="Last Name"
-                                    ></CustomInput>
-                                </Grid>
+                            {/* ROW 1: LAST NAME */}
+                            <Grid component="form" item xs={6}>
+                                <CustomInput
+                                    id="Job description"
+                                    name="Job description"
+                                    value={user.lastName}
+                                    onChange={changeField}
+                                    title="Job description"
+                                ></CustomInput>
+                            </Grid>
 
-                                {/* ROW 2: MIDDLE NAME */}
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="Nationality"
-                                        name="Nationality"
-                                        value={user.midName}
-                                        onChange={changeField}
-                                        title="Nationality"
-                                    ></CustomInput>
-                                </Grid>
+                            {/* ROW 2: MIDDLE NAME */}
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    id="Requirement"
+                                    name="Requirement"
+                                    value={user.midName}
+                                    onChange={changeField}
+                                    title="Requirement"
+                                ></CustomInput>
+                            </Grid>
 
-                                {/* ROW 2: GENDER */}
-                                {/* <Grid item xs={6}>
-                                        <CustomInput
-                                            select
-                                            id="PassportNo"
-                                            name="Passport No."
-                                            value={user.gender}
-                                            onChange={changeField}
-                                            title="Passport No."
-                                            dis={edit.disabled}
-                                            req={edit.required}
-                                            //MAP THRU OPTIONS
-                                            content={genderSelect.map((option) => (
-                                                <MenuItem value={option.value}>{option.label}</MenuItem>
-                                            ))}
-                                        ></CustomInput>
-                                    </Grid> */}
+                            {/* ROW 2: GENDER */}
+                            {/* <Grid item xs={6}>
+                                <CustomInput
+                                    select
+                                    id="PassportNo"
+                                    name="Passport No."
+                                    value={user.gender}
+                                    onChange={changeField}
+                                    title="Passport No."
+                                    // dis={edit.disabled}
+                                    // req={edit.required}
+                                    //MAP THRU OPTIONS
+                                    content={genderSelect.map((option) => (
+                                        <MenuItem value={option.value}>{option.label}</MenuItem>
+                                    ))}
+                                ></CustomInput>
+                            </Grid> */}
 
-                                {/* ROW 3: PHONE */}
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="phone"
-                                        name="phone"
-                                        value={user.phone}
-                                        onChange={changeField}
-                                        title="Phone Number 1"
-                                        //DIALING CODE
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">63+</InputAdornment>
-                                        }}
-                                    ></CustomInput>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="phone"
-                                        name="phone"
-                                        value={user.phone}
-                                        onChange={changeField}
-                                        title="Phone Number 2"
-                                        //DIALING CODE
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">63+</InputAdornment>
-                                        }}
-                                    ></CustomInput>
-                                </Grid>
+                            {/* ROW 3: PHONE */}
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    id="Industry"
+                                    name="Industry"
+                                    value={user.midName}
+                                    onChange={changeField}
+                                    title="Industry"
+                                ></CustomInput>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    id="JobLocation"
+                                    name="Job Location"
+                                    value={user.midName}
+                                    onChange={changeField}
+                                    title="Job Location"
+                                ></CustomInput>
+                            </Grid>
 
-                                {/* ROW 3: EMAIL */}
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={user.email}
-                                        onChange={changeField}
-                                        title="Email Address"
-                                    ></CustomInput>
-                                </Grid>
+                            {/* ROW 3: EMAIL */}
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    type="Salary"
+                                    id="Salary"
+                                    name="Salary"
+                                    value={user.email}
+                                    onChange={changeField}
+                                    title="Salary"
+                                ></CustomInput>
+                            </Grid>
 
-                                {/* ROW 4: PASSWORD */}
-                                {/*  <Grid item xs={6}>
+                            {/* ROW 4: PASSWORD */}
+                            {/*  <Grid item xs={6}>
                                 <CustomInput
                                     id="pass"
                                     name="pass"
@@ -212,62 +207,50 @@ export default function JobDetailsMain(props) {
                                 ></CustomInput>
                                 </Grid> */}
 
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="passportNo"
-                                        name="Passport No."
-                                        value={user.email}
-                                        onChange={changeField}
-                                        title="Passport No."
-                                    ></CustomInput>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="Nationality"
-                                        name="Nationality"
-                                        value={user.midName}
-                                        onChange={changeField}
-                                        title="Nationality"
-                                    ></CustomInput>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="Profession"
-                                        name="Profession"
-                                        value={user.midName}
-                                        onChange={changeField}
-                                        title="Profession"
-                                    ></CustomInput>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="CurrentEmployer"
-                                        name="Current Employer"
-                                        value={user.midName}
-                                        onChange={changeField}
-                                        title="Current Employer"
-                                    ></CustomInput>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CustomInput
-                                        id="Residence Card Expiry Date"
-                                        name="Residence Card Expiry Date"
-                                        value={user.midName}
-                                        onChange={changeField}
-                                        title="Residence Card Expiry Date"
-                                    ></CustomInput>
-                                </Grid>
-                                {/* BUTTON */}
-                                <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
-                                    <Button variant="contained" color="secondary" sx={{ p: 1 }}>
-                                        Save
-                                    </Button>
-                                </Grid>
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    select
+                                    type="Shifts"
+                                    id="Shifts"
+                                    name="Shifts"
+                                    value={user.email}
+                                    onChange={changeField}
+                                    title="Shifts"
+                                    content={shifts.map((option) => (
+                                        <MenuItem value={option.value}>{option.label}</MenuItem>
+                                    ))}
+                                ></CustomInput>
                             </Grid>
-                        </FormControl>
-                    </CardContent>
-                </form>
-            </Card>
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    id="Empowering"
+                                    name="Empowering"
+                                    value={user.midName}
+                                    onChange={changeField}
+                                    title="Empowering"
+                                ></CustomInput>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <CustomInput
+                                    id="About Company"
+                                    name="About Company"
+                                    value={user.midName}
+                                    onChange={changeField}
+                                    title="About Company"
+                                    multiline
+                                    minRows={4}
+                                ></CustomInput>
+                            </Grid>
+                            {/* BUTTON */}
+                            <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
+                                <Button variant="contained" color="secondary" sx={{ p: 1 }}>
+                                    Save
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </FormControl>
+                </CardContent>
+            </form>
         </MainCard>
     );
 }
