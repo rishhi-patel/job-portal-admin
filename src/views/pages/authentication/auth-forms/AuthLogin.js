@@ -66,7 +66,7 @@ const FirebaseLogin = ({ ...others }) => {
     return (
         <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                     <AnimateButton>
                         <Button
                             disableElevation
@@ -86,7 +86,7 @@ const FirebaseLogin = ({ ...others }) => {
                             Sign in with Google
                         </Button>
                     </AnimateButton>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                     <Box
                         sx={{
@@ -94,9 +94,9 @@ const FirebaseLogin = ({ ...others }) => {
                             display: 'flex'
                         }}
                     >
-                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
+                        {/* <Divider sx={{ flexGrow: 1 }} orientation="horizontal" /> */}
 
-                        <Button
+                        {/* <Button
                             variant="outlined"
                             sx={{
                                 cursor: 'unset',
@@ -112,9 +112,9 @@ const FirebaseLogin = ({ ...others }) => {
                             disabled
                         >
                             OR
-                        </Button>
+                        </Button> */}
 
-                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
+                        {/* <Divider sx={{ flexGrow: 1 }} orientation="horizontal" /> */}
                     </Box>
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
@@ -138,7 +138,7 @@ const FirebaseLogin = ({ ...others }) => {
                     try {
                         setStatus({ success: true });
                         setSubmitting(true);
-                        navigate('/dashboard/default');
+                        navigate('/dashboard/candidates');
                     } catch (err) {
                         setStatus({ success: false });
                         setErrors({ submit: err.message });

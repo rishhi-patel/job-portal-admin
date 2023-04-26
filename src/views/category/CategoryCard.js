@@ -22,7 +22,7 @@ export default function CategoryCard() {
 
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 3, position: 'relative' }}>
-            <IconButton
+            {/* <IconButton
                 aria-label="settings"
                 sx={{ position: 'absolute', right: 0, color: '#FFFFFF' }}
                 aria-controls={open ? 'basic-menu' : undefined}
@@ -43,7 +43,7 @@ export default function CategoryCard() {
             >
                 <MenuItem onClick={handleClose}>Edit</MenuItem>
                 <MenuItem onClick={handleClose}>Delete</MenuItem>
-            </Menu>
+            </Menu> */}
             <CardMedia
                 sx={{ height: 140 }}
                 image="https://images.pexels.com/photos/5076531/pexels-photo-5076531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -53,14 +53,17 @@ export default function CategoryCard() {
                 <Typography gutterBottom variant="h5" component="div">
                     Reactjs Dev
                 </Typography>
-                <Typography variant="body2" color="text.secondary" className="ellipseAfter3Line">
+                {/* <Typography variant="body2" color="text.secondary" className="ellipseAfter3Line">
                     A React developer is responsible for the design and implementation of user interfaces (UIs) and UI components using
                     React, a front-end JavaScript library. They develop and maintain UIs for web and mobile apps.
-                </Typography>
+                </Typography> */}
             </CardContent>
-            <CardActions>
-                <Button disableElevation fullWidth type="submit" variant="contained" color="secondary" size="small">
-                    View
+            <CardActions sx={{ justifyContent: 'space-between' }}>
+                <Button disableElevation type="submit" variant="outlined" color="secondary" size="small" sx={{ width: '45%' }}>
+                    Edit
+                </Button>
+                <Button disableElevation type="submit" variant="contained" color="error" size="small" sx={{ width: '45%' }}>
+                    Delete
                 </Button>
             </CardActions>
         </Card>

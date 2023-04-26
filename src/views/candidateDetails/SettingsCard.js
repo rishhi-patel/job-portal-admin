@@ -293,11 +293,11 @@ export default function SettingsCard(props) {
                             )}
 
                             {/* BUTTON */}
-                            <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
+                            {/* <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
                                 <Button variant="contained" color="secondary" sx={{ p: 1 }}>
                                     Edit
                                 </Button>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </FormControl>
                 </CardContent>

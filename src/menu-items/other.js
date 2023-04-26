@@ -7,14 +7,14 @@ const other = {
     id: 'sample-docs-roadmap',
     type: 'group',
     children: [
-        {
-            id: 'default',
-            title: 'Dashboard',
-            type: 'item',
-            url: '/dashboard/default',
-            icon: IconDashboard,
-            breadcrumbs: false
-        },
+        // {
+        //     id: 'default',
+        //     title: 'Dashboard',
+        //     type: 'item',
+        //     url: '/dashboard/default',
+        //     icon: IconDashboard,
+        //     breadcrumbs: false
+        // },
         {
             id: 'candidates',
             title: 'Candidates',
