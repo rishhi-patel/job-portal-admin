@@ -6,7 +6,18 @@ import SettingsCard from './SettingsCard';
 import { Grid } from '@mui/material';
 
 const candidateDetails = () => {
-    const [text, setText] = useState('');
+    const [userDetails, setUserDetails] = useState({
+        firstName: 'john',
+        lastName: 'Doe',
+        nationality: 'indian',
+        phoneNumber1: 999999999,
+        phoneNumber2: 88888888,
+        email: 'janedoe@gmail.com',
+        passportNo: 'W2006869',
+        currentEmployer: '',
+        profession: 'Developer',
+        residenceCardExpiryDate: '02/09/2024'
+    });
 
     const mainUser = {
         title: 'CEO of Apple',
@@ -46,6 +57,7 @@ const candidateDetails = () => {
                             dt1={mainUser.dt1}
                             dt2={mainUser.dt2}
                             dt3={mainUser.dt3}
+                            userDetails={userDetails}
                         ></ProfileCard>
                     </Grid>
 
@@ -59,6 +71,7 @@ const candidateDetails = () => {
                             email={mainUser.email}
                             pass={mainUser.pass}
                             gender={mainUser.gender}
+                            userDetails={userDetails}
                         ></SettingsCard>
                     </Grid>
                 </Grid>

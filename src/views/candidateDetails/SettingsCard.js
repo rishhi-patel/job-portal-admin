@@ -18,6 +18,7 @@ import CustomInput from './CustomInput';
 
 //APP
 export default function SettingsCard(props) {
+    const { userDetails } = props;
     //TAB STATES
     const [value, setValue] = React.useState('one');
 
@@ -108,7 +109,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="firstName"
                                             name="firstName"
-                                            value={user.firstName}
+                                            value={userDetails.firstName}
                                             onChange={changeField}
                                             title="First Name"
                                             dis={edit.disabled}
@@ -121,7 +122,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="lastName"
                                             name="lastName"
-                                            value={user.lastName}
+                                            value={userDetails.lastName}
                                             onChange={changeField}
                                             title="Last Name"
                                             dis={edit.disabled}
@@ -134,7 +135,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="Nationality"
                                             name="Nationality"
-                                            value={user.midName}
+                                            value={userDetails.nationality}
                                             onChange={changeField}
                                             title="Nationality"
                                             dis={edit.disabled}
@@ -165,14 +166,14 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="phone"
                                             name="phone"
-                                            value={user.phone}
+                                            value={userDetails.phoneNumber1}
                                             onChange={changeField}
                                             title="Phone Number 1"
                                             dis={edit.disabled}
                                             req={edit.required}
                                             //DIALING CODE
                                             InputProps={{
-                                                startAdornment: <InputAdornment position="start">63+</InputAdornment>
+                                                startAdornment: <InputAdornment position="start">+91</InputAdornment>
                                             }}
                                         ></CustomInput>
                                     </Grid>
@@ -180,14 +181,14 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="phone"
                                             name="phone"
-                                            value={user.phone}
+                                            value={userDetails.phoneNumber2}
                                             onChange={changeField}
                                             title="Phone Number 2"
                                             dis={edit.disabled}
                                             req={edit.required}
                                             //DIALING CODE
                                             InputProps={{
-                                                startAdornment: <InputAdornment position="start">63+</InputAdornment>
+                                                startAdornment: <InputAdornment position="start">+91</InputAdornment>
                                             }}
                                         ></CustomInput>
                                     </Grid>
@@ -198,7 +199,7 @@ export default function SettingsCard(props) {
                                             type="email"
                                             id="email"
                                             name="email"
-                                            value={user.email}
+                                            value={userDetails.email}
                                             onChange={changeField}
                                             title="Email Address"
                                             dis={edit.disabled}
@@ -238,7 +239,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="passportNo"
                                             name="Passport No."
-                                            value={user.email}
+                                            value={userDetails.passportNo}
                                             onChange={changeField}
                                             title="Passport No."
                                             dis={edit.disabled}
@@ -247,11 +248,11 @@ export default function SettingsCard(props) {
                                     </Grid>
                                     <Grid item xs={6}>
                                         <CustomInput
-                                            id="Nationality"
-                                            name="Nationality"
-                                            value={user.midName}
+                                            id="Facebook_ID"
+                                            name="Facebook ID"
+                                            value={userDetails.email}
                                             onChange={changeField}
-                                            title="Nationality"
+                                            title="Facebook ID"
                                             dis={edit.disabled}
                                             req={edit.required}
                                         ></CustomInput>
@@ -260,7 +261,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="Profession"
                                             name="Profession"
-                                            value={user.midName}
+                                            value={userDetails.profession}
                                             onChange={changeField}
                                             title="Profession"
                                             dis={edit.disabled}
@@ -271,7 +272,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="CurrentEmployer"
                                             name="Current Employer"
-                                            value={user.midName}
+                                            value={userDetails.currentEmployer}
                                             onChange={changeField}
                                             title="Current Employer"
                                             dis={edit.disabled}
@@ -282,7 +283,7 @@ export default function SettingsCard(props) {
                                         <CustomInput
                                             id="Residence Card Expiry Date"
                                             name="Residence Card Expiry Date"
-                                            value={user.midName}
+                                            value={userDetails.residenceCardExpiryDate}
                                             onChange={changeField}
                                             title="Residence Card Expiry Date"
                                             dis={edit.disabled}

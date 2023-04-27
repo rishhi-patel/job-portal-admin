@@ -58,7 +58,7 @@ export default function CategoryCard() {
                     React, a front-end JavaScript library. They develop and maintain UIs for web and mobile apps.
                 </Typography> */}
             </CardContent>
-            <CardActions sx={{ justifyContent: 'space-between' }}>
+            <CardActions sx={{ justifyContent: 'space-between', paddingTop: 0 }}>
                 <Button disableElevation type="submit" variant="outlined" color="secondary" size="small" sx={{ width: '45%' }}>
                     Edit
                 </Button>
