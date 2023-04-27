@@ -108,9 +108,7 @@ const CandidatesMain = () => {
                             <TableCell align="center">ID</TableCell>
                             <TableCell align="center">Name</TableCell>
                             <TableCell align="center">Mobile</TableCell>
-                            <TableCell align="center" width="200px">
-                                Email
-                            </TableCell>
+                            <TableCell align="center">Email</TableCell>
 
                             <TableCell align="center">View</TableCell>
                         </TableRow>
@@ -118,11 +116,19 @@ const CandidatesMain = () => {
                     <TableBody style={{ padding: '10px' }}>
                         {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((userData, i) => (
                             <TableRow key={userData.id}>
-                                <TableCell align="center">#{i + 1}</TableCell>
-                                <TableCell align="center">{userData.userName}</TableCell>
-                                <TableCell align="center">{userData.mobile}</TableCell>
-                                <TableCell align="center">{userData.email}</TableCell>
-                                <TableCell align="center">
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    #{i + 1}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {userData.userName}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {userData.mobile}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {userData.email}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
                                     <Link to={'1'}>
                                         <IconEye />
                                     </Link>

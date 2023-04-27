@@ -95,13 +95,23 @@ const JobsMain = () => {
                     <TableBody style={{ padding: '10px' }}>
                         {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((jobData) => (
                             <TableRow key={jobData.id}>
-                                <TableCell align="center">{jobData.id}</TableCell>
-                                <TableCell align="center">{jobData.jobPosition}</TableCell>
-                                <TableCell align="center">{jobData.Industry}</TableCell>
-                                <TableCell align="center">{jobData.Salary}</TableCell>
-                                <TableCell align="center">{jobData.JobLocation}</TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {jobData.id}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {jobData.jobPosition}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {jobData.Industry}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {jobData.Salary}
+                                </TableCell>
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                    {jobData.JobLocation}
+                                </TableCell>
 
-                                <TableCell align="center">
+                                <TableCell align="center" style={{ paddingLeft: 16 }}>
                                     <Link to={'1'}>
                                         <IconEye />
                                     </Link>
