@@ -115,7 +115,7 @@ export default function SettingsCard(props) {
                                             title="First Name"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
 
                                     {/* ROW 1: LAST NAME */}
@@ -128,7 +128,7 @@ export default function SettingsCard(props) {
                                             title="Last Name"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
 
                                     {/* ROW 2: MIDDLE NAME */}
@@ -141,7 +141,7 @@ export default function SettingsCard(props) {
                                             title="Nationality"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
 
                                     {/* ROW 2: GENDER */}
@@ -159,7 +159,7 @@ export default function SettingsCard(props) {
                                             content={genderSelect.map((option) => (
                                                 <MenuItem value={option.value}>{option.label}</MenuItem>
                                             ))}
-                                        ></CustomInput>
+                                      />
                                     </Grid> */}
 
                                     {/* ROW 3: PHONE */}
@@ -176,7 +176,7 @@ export default function SettingsCard(props) {
                                             InputProps={{
                                                 startAdornment: <InputAdornment position="start">+91</InputAdornment>
                                             }}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <CustomInput
@@ -191,7 +191,7 @@ export default function SettingsCard(props) {
                                             InputProps={{
                                                 startAdornment: <InputAdornment position="start">+91</InputAdornment>
                                             }}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
 
                                     {/* ROW 3: EMAIL */}
@@ -205,7 +205,7 @@ export default function SettingsCard(props) {
                                             title="Email Address"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
 
                                     {/* ROW 4: PASSWORD */}
@@ -229,7 +229,7 @@ export default function SettingsCard(props) {
                                             </InputAdornment>
                                         )
                                     }}
-                                ></CustomInput> */}
+                              /> */}
                                     </Grid>
                                 </>
                             )}
@@ -245,7 +245,7 @@ export default function SettingsCard(props) {
                                             title="Passport No."
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <CustomInput
@@ -256,7 +256,7 @@ export default function SettingsCard(props) {
                                             title="Facebook ID"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <CustomInput
@@ -267,7 +267,7 @@ export default function SettingsCard(props) {
                                             title="Profession"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <CustomInput
@@ -278,7 +278,7 @@ export default function SettingsCard(props) {
                                             title="Current Employer"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
                                     <Grid item xs={6}>
                                         <CustomInput
@@ -289,7 +289,7 @@ export default function SettingsCard(props) {
                                             title="Residence Card Expiry Date"
                                             dis={edit.disabled}
                                             req={edit.required}
-                                        ></CustomInput>
+                                        />
                                     </Grid>
                                 </>
                             )}
