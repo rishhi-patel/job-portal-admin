@@ -19,6 +19,7 @@ const Candidates = Loadable(lazy(() => import('views/candidates/CandidatesMain')
 const CandidateDetails = Loadable(lazy(() => import('views/candidateDetails/CandidateDetailsMain')));
 const Jobs = Loadable(lazy(() => import('views/jobs/JobsMain')));
 const JobDetailsMain = Loadable(lazy(() => import('views/jobDetails/JobDetailsMain')));
+const AddJobMain = Loadable(lazy(() => import('views/jobDetails/AddJobMain')));
 const Categories = Loadable(lazy(() => import('views/category/CategoriesMain')));
 // const candidateDetails = Loadable(lazy(() => import()));
 
@@ -50,6 +51,10 @@ const MainRoutes = {
                 {
                     path: 'jobs/:id',
                     element: <JobDetailsMain />
+                },
+                {
+                    path: 'jobs/new',
+                    element: <AddJobMain />
                 },
                 {
                     path: 'category',

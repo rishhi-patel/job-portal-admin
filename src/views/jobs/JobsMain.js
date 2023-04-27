@@ -79,7 +79,7 @@ const JobsMain = () => {
     };
 
     return (
-        <MainCard title="Jobs" btnText="+ Add Job">
+        <MainCard title="Jobs" btnText="+ Add Job" btnEvent={() => navigate('/dashboard/jobs/new')}>
             <Box className="plan" style={{ overflowY: 'auto' }}>
                 <StyledTable>
                     <TableHead>
