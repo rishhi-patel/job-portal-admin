@@ -11,7 +11,7 @@ const AddJobMain = () => {
                     jobDescription: '',
                     requirement: '',
                     industry: '',
-                    shifts: 'first',
+                    shifts: '',
                     jobLocation: '',
                     salary: '',
                     aboutCompany: '',
