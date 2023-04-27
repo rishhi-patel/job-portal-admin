@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CustomInput from './CustomInput';
+import { padding } from '@mui/system';
 
 //APP
 export default function SettingsCard(props) {
@@ -80,7 +81,7 @@ export default function SettingsCard(props) {
 
     //RETURN
     return (
-        <Card variant="outlined" sx={{ height: '100%', width: '100%' }}>
+        <Card variant="outlined" sx={{ height: '100%', width: '100%', padding: 0, border: 'none' }}>
             {/* TABS */}
             <br></br>
             <Tabs value={value} onChange={handleChange} textColor="secondary" indicatorColor="secondary">

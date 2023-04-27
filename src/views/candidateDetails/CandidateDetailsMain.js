@@ -36,46 +36,17 @@ const candidateDetails = () => {
     const fullName = `${mainUser.firstName} ${mainUser.lastName}`;
 
     return (
-        <MainCard title="Candidate Details">
-            <Grid container direction="column" sx={{ overflowX: 'hidden' }}>
-                {/* COMPONENTS */}
-                <Grid
-                    container
-                    direction={{ xs: 'column', md: 'row' }}
-                    spacing={3}
-                    sx={{
-                        // position: 'absolute',
-                        top: '20vh',
-                        px: { xs: 0, md: 7 }
-                    }}
-                >
-                    {/* PROFILE CARD */}
-                    <Grid item md={3} sm={12}>
-                        <ProfileCard
-                            name={fullName}
-                            sub={mainUser.title}
-                            dt1={mainUser.dt1}
-                            dt2={mainUser.dt2}
-                            dt3={mainUser.dt3}
-                            userDetails={userDetails}
-                        ></ProfileCard>
-                    </Grid>
-
-                    {/* SETTINGS CARD */}
-                    <Grid item md={9} sm={12}>
-                        <SettingsCard
-                            firstName={mainUser.firstName}
-                            lastName={mainUser.lastName}
-                            midName={mainUser.midName}
-                            phone={mainUser.phone}
-                            email={mainUser.email}
-                            pass={mainUser.pass}
-                            gender={mainUser.gender}
-                            userDetails={userDetails}
-                        ></SettingsCard>
-                    </Grid>
-                </Grid>
-            </Grid>
+        <MainCard title="Candidate Details" contentSX={{ padding: 0 }}>
+            <SettingsCard
+                firstName={mainUser.firstName}
+                lastName={mainUser.lastName}
+                midName={mainUser.midName}
+                phone={mainUser.phone}
+                email={mainUser.email}
+                pass={mainUser.pass}
+                gender={mainUser.gender}
+                userDetails={userDetails}
+            ></SettingsCard>
         </MainCard>
     );
 };

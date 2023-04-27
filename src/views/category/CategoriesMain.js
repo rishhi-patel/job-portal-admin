@@ -9,7 +9,7 @@ const CategoriesMain = () => {
         <MainCard title="Categories" btnText="+ Add Category" btnEvent={() => console.log('hello')}>
             <Grid container spacing={6}>
                 {new Array(12).fill(1).map((elem) => (
-                    <Grid item md={3} xs={12} key={elem}>
+                    <Grid item lg={3} md={4} sm={6} xs={12} key={elem}>
                         <CategoryCard />
                     </Grid>
                 ))}
