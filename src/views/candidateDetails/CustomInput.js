@@ -9,7 +9,6 @@ export default function CustomInput(props) {
                 {props.title}
             </label>
             <TextField
-                required
                 fullWidth
                 margin="dense"
                 size="small"
@@ -18,7 +17,7 @@ export default function CustomInput(props) {
                 value={props.value}
                 onChange={props.onChange}
                 disabled={props.dis}
-                // required={props.req}
+                required={props.required}
                 type={props.type}
                 InputProps={props.InputProps}
                 select={props.select}
