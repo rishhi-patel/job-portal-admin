@@ -105,7 +105,7 @@ const CandidatesMain = () => {
                 <StyledTable>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">ID</TableCell>
+                            <TableCell align="center">No.</TableCell>
                             <TableCell align="center">Name</TableCell>
                             <TableCell align="center">Mobile</TableCell>
                             <TableCell align="center">Email</TableCell>

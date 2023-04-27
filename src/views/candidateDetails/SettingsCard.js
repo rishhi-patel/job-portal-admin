@@ -174,7 +174,7 @@ export default function SettingsCard(props) {
                                             req={edit.required}
                                             //DIALING CODE
                                             InputProps={{
-                                                startAdornment: <InputAdornment position="start">+91</InputAdornment>
+                                                startAdornment: <InputAdornment position="start">+40</InputAdornment>
                                             }}
                                         />
                                     </Grid>
@@ -189,7 +189,7 @@ export default function SettingsCard(props) {
                                             req={edit.required}
                                             //DIALING CODE
                                             InputProps={{
-                                                startAdornment: <InputAdornment position="start">+91</InputAdornment>
+                                                startAdornment: <InputAdornment position="start">+40</InputAdornment>
                                             }}
                                         />
                                     </Grid>

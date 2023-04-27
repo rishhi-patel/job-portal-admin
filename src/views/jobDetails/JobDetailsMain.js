@@ -16,7 +16,7 @@ export default function JobDetailsMain(props) {
                     industry: 'IT',
                     shifts: 'first',
                     jobLocation: 'india',
-                    salary: '20k - 30k',
+                    salary: 'Iei 10000 -  Iei 20000',
                     aboutCompany: 'infotech.ltd',
                     empowering: '',
                     aboutCompany: '',

@@ -25,7 +25,7 @@ const other = {
         },
         {
             id: 'category',
-            title: 'Category',
+            title: 'Categories',
             type: 'item',
             url: '/dashboard/category',
             icon: IconBoxMultiple,

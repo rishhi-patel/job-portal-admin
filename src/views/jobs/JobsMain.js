@@ -29,35 +29,35 @@ const dataList = [
         id: 1,
         jobPosition: 'Jr. React Developer',
         Industry: 'IT',
-        Salary: '20k - 80k',
+        Salary: 'Iei 10000 -  Iei 20000',
         JobLocation: ' US'
     },
     {
         id: 2,
         jobPosition: 'Sr. React Developer',
         Industry: 'IT',
-        Salary: '20k - 80k',
+        Salary: 'Iei 10000 -  Iei 20000',
         JobLocation: ' US'
     },
     {
         id: 3,
         jobPosition: 'Sr. React Developer',
         Industry: 'IT',
-        Salary: '20k - 80k',
+        Salary: 'Iei 10000 -  Iei 20000',
         JobLocation: ' US'
     },
     {
         id: 4,
         jobPosition: 'Jr. React Developer',
         Industry: 'IT',
-        Salary: '20k - 80k',
+        Salary: 'Iei 10000 -  Iei 20000',
         JobLocation: ' US'
     },
     {
         id: 5,
         jobPosition: 'Jr. React Developer',
         Industry: 'IT',
-        Salary: '20k - 80k',
+        Salary: 'Iei 10000 -  Iei 20000',
         JobLocation: ' US'
     }
 ];
@@ -84,7 +84,7 @@ const JobsMain = () => {
                 <StyledTable>
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">No</TableCell>
+                            <TableCell align="center">No.</TableCell>
                             <TableCell align="center">Job Position</TableCell>
                             <TableCell align="center">Industry</TableCell>
                             <TableCell align="center">Salary </TableCell>
