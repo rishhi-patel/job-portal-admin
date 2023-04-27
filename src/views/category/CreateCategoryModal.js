@@ -12,7 +12,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    maxWidth: '400px',
+    width: '90%',
     bgcolor: 'background.paper',
     borderRadius: '12px',
     boxShadow: 24,
@@ -31,13 +32,13 @@ export default function CreateCategoryModal({ open, setOpen }) {
                 <Box sx={style}>
                     <Typography variant="h3">Create Category</Typography>
                     {image ? (
-                        <CardMedia sx={{ height: 200, borderRadius: '12px' }} image={image} title="green iguana" />
+                        <CardMedia sx={{ height: 200, borderRadius: '12px', marginTop: '13px' }} image={image} title="green iguana" />
                     ) : (
                         <IconButton
                             color="primary"
                             aria-label="upload picture"
                             component="label"
-                            style={{ margin: '0 auto', display: 'block' }}
+                            style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
                         >
                             <input hidden accept="image/*" type="file" onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} />
                             <img
@@ -58,7 +59,7 @@ export default function CreateCategoryModal({ open, setOpen }) {
                                 Clear
                             </Button>
                         ) : (
-                            <Button variant="contained" color="error" sx={{ width: '45%' }}>
+                            <Button variant="contained" color="error" sx={{ width: '45%' }} onClick={handleClose}>
                                 Cancel
                             </Button>
                         )}
