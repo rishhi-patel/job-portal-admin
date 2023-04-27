@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import CardContent from '@mui/material/CardContent';
 import { FormHelperText, Grid } from '@mui/material';
@@ -8,6 +8,7 @@ import CustomInput from 'views/candidateDetails/CustomInput';
 import MainCard from 'ui-component/cards/MainCard';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+
 const shifts = [
     {
         value: 'first',
@@ -22,7 +23,8 @@ const shifts = [
         label: 'night'
     }
 ];
-const JobDetailsForm = ({ details }) => {
+const JobDetailsForm = ({ details, edit = false }) => {
+    const [readOnly, setReadOnly] = useState(edit);
     return (
         <Formik
             initialValues={{
@@ -65,6 +67,7 @@ const JobDetailsForm = ({ details }) => {
                                         value={values.jobPosition}
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         title="Job Position"
                                     />
                                     {touched.jobPosition && errors.jobPosition && (
@@ -83,6 +86,7 @@ const JobDetailsForm = ({ details }) => {
                                         requirementrequirement
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         title="Job description"
                                     />
                                     {touched.jobDescription && errors.jobDescription && (
@@ -98,6 +102,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="requirement"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         value={values.requirement}
                                         error={touched.requirement && errors.requirement}
                                         title="Requirement"
@@ -115,6 +120,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="industry"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         value={values.industry}
                                         error={touched.industry && errors.industry}
                                         title="Industry"
@@ -131,6 +137,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="jobLocation"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         value={values.jobLocation}
                                         error={touched.jobLocation && errors.jobLocation}
                                         title="Job Location"
@@ -149,6 +156,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="salary"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         value={values.salary}
                                         error={touched.salary && errors.salary}
                                         title="Salary"
@@ -167,6 +175,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="shifts"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         title="Shifts"
                                         value={values.shifts}
                                         error={touched.shifts && errors.shifts}
@@ -187,6 +196,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="empowering"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         value={values.empowering}
                                         title="Empowering"
                                         multiline
@@ -204,6 +214,7 @@ const JobDetailsForm = ({ details }) => {
                                         name="aboutCompany"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
+                                        disabled={readOnly}
                                         value={values.aboutCompany}
                                         title="About Company"
                                         multiline
@@ -212,9 +223,15 @@ const JobDetailsForm = ({ details }) => {
                                 </Grid>{' '}
                                 {/* BUTTON */}
                                 <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
-                                    <Button variant="contained" color="secondary" sx={{ p: 1 }} type="submit">
-                                        Save
-                                    </Button>
+                                    {readOnly ? (
+                                        <Button variant="contained" color="secondary" sx={{ p: 1 }} onClick={() => setReadOnly(false)}>
+                                            Edit
+                                        </Button>
+                                    ) : (
+                                        <Button variant="contained" color="secondary" sx={{ p: 1 }} type="submit">
+                                            Save
+                                        </Button>
+                                    )}
                                 </Grid>
                             </Grid>
                         </FormControl>

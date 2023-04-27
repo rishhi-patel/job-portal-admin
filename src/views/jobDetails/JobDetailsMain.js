@@ -22,6 +22,7 @@ export default function JobDetailsMain(props) {
                     aboutCompany: '',
                     submit: null
                 }}
+                edit
             />
         </MainCard>
     );

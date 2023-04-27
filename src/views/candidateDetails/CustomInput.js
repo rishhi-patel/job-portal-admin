@@ -16,7 +16,6 @@ export default function CustomInput(props) {
                 name={props.name}
                 value={props.value}
                 onChange={props.onChange}
-                disabled={props.dis}
                 required={props.required}
                 type={props.type}
                 InputProps={props.InputProps}
