@@ -183,11 +183,11 @@ const ProfileSection = () => {
                                         />
                                         <Divider /> */}
                                     </Box>
-                                    <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
-                                        <Box sx={{ p: 2 }}>
-                                            {/* <UpgradePlanCard />
+                                    {/* <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}> */}
+                                    <Box sx={{ p: 2 }}>
+                                        {/* <UpgradePlanCard />
                                             <Divider /> */}
-                                            {/* <Card
+                                        {/* <Card
                                                 sx={{
                                                     bgcolor: theme.palette.primary.light,
                                                     my: 2
@@ -229,36 +229,36 @@ const ProfileSection = () => {
                                                     </Grid>
                                                 </CardContent>
                                             </Card> */}
-                                            <Divider />
-                                            <List
-                                                component="nav"
-                                                sx={{
-                                                    width: '100%',
-                                                    maxWidth: 350,
-                                                    minWidth: 300,
-                                                    backgroundColor: theme.palette.background.paper,
-                                                    borderRadius: '10px',
-                                                    [theme.breakpoints.down('md')]: {
-                                                        minWidth: '100%'
-                                                    },
-                                                    '& .MuiListItemButton-root': {
-                                                        mt: 0.5
-                                                    }
-                                                }}
+                                        <Divider />
+                                        <List
+                                            component="nav"
+                                            sx={{
+                                                width: '100%',
+                                                maxWidth: 350,
+                                                minWidth: 300,
+                                                backgroundColor: theme.palette.background.paper,
+                                                borderRadius: '10px',
+                                                [theme.breakpoints.down('md')]: {
+                                                    minWidth: '100%'
+                                                },
+                                                '& .MuiListItemButton-root': {
+                                                    mt: 0.5
+                                                }
+                                            }}
+                                        >
+                                            <ListItemButton
+                                                sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                selected={selectedIndex === 4}
+                                                onClick={handleLogout}
                                             >
-                                                <ListItemButton
-                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                    selected={selectedIndex === 4}
-                                                    onClick={handleLogout}
-                                                >
-                                                    <ListItemIcon>
-                                                        <IconLogout stroke={1.5} size="1.3rem" />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
-                                                </ListItemButton>
-                                            </List>
-                                        </Box>
-                                    </PerfectScrollbar>
+                                                <ListItemIcon>
+                                                    <IconLogout stroke={1.5} size="1.3rem" />
+                                                </ListItemIcon>
+                                                <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
+                                            </ListItemButton>
+                                        </List>
+                                    </Box>
+                                    {/* </PerfectScrollbar> */}
                                 </MainCard>
                             </ClickAwayListener>
                         </Paper>
