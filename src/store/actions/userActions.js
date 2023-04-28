@@ -1,5 +1,18 @@
 import API from 'API';
-import { ERROR_USER_DETAILS, ERROR_USER_LOGIN, SUCCESS_USER_DETAILS, SUCCESS_USER_LOGIN, USER_DETAILS, USER_LOGIN } from 'store/constant';
+import {
+    ERROR_USER_DETAILS,
+    ERROR_USER_LOGIN,
+    GET_CANDIDATES,
+    GET_CANDIDATES_BY_ID,
+    GET_CANDIDATES_BY_ID_ERROR,
+    GET_CANDIDATES_BY_ID_SUCCESS,
+    GET_CANDIDATES_ERROR,
+    GET_CANDIDATES_SUCCESS,
+    SUCCESS_USER_DETAILS,
+    SUCCESS_USER_LOGIN,
+    USER_DETAILS,
+    USER_LOGIN
+} from 'store/constant';
 import Notification from 'utils/Notification';
 
 export const authUser = (value, navigate) => async (dispatch) => {
@@ -43,7 +56,6 @@ export const getUserDetails = (navigate) => async (dispatch) => {
             type: USER_DETAILS
         });
         const { data, status } = await API.get('/user/profile');
-        console.log({ data });
         if (status === 400) {
             Notification('error', data.message);
             return navigate('/');
@@ -58,6 +70,58 @@ export const getUserDetails = (navigate) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: ERROR_USER_DETAILS
+        });
+    }
+};
+
+export const getCandidates = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: GET_CANDIDATES
+        });
+        const { data, status } = await API.get('/user');
+
+        if (status === 200) {
+            const { data: candidates } = data;
+            dispatch({
+                type: GET_CANDIDATES_SUCCESS,
+                payload: candidates
+            });
+        } else {
+            Notification('error');
+            dispatch({
+                type: GET_CANDIDATES_ERROR
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: GET_CANDIDATES_ERROR
+        });
+    }
+};
+
+export const getCandidateById = (_id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: GET_CANDIDATES_BY_ID
+        });
+        const { data, status } = await API.get(`/user/${_id}`);
+
+        if (status === 200) {
+            const { data: candidate } = data;
+            dispatch({
+                type: GET_CANDIDATES_BY_ID_SUCCESS,
+                payload: candidate
+            });
+        } else {
+            Notification('error');
+            dispatch({
+                type: GET_CANDIDATES_BY_ID_ERROR
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: GET_CANDIDATES_BY_ID_ERROR
         });
     }
 };

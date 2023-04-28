@@ -1,54 +1,50 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react';
 import MainCard from 'ui-component/cards/MainCard';
-import ProfileCard from './ProfileCard';
 import SettingsCard from './SettingsCard';
-import { Grid } from '@mui/material';
+import { useParams } from 'react-router';
+import { getCandidateById } from 'store/actions/userActions';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import Loading from 'layout/loader/Loading';
 
-const candidateDetails = () => {
+const candidateDetails = ({ getCandidateDetails, selectedCandidate, loading }) => {
+    console.log({ loading });
+    const { id } = useParams();
     const [userDetails, setUserDetails] = useState({
-        firstName: 'john',
-        lastName: 'Doe',
-        nationality: 'indian',
-        phoneNumber1: 999999999,
-        phoneNumber2: 88888888,
-        email: 'janedoe@gmail.com',
-        passportNo: 'W2006869',
+        firstName: '',
+        lastName: '',
+        nationality: '',
+        phoneNumber1: '',
+        phoneNumber2: '',
+        email: '',
+        passportNo: '',
         currentEmployer: '',
-        profession: 'Developer',
-        residenceCardExpiryDate: '02/09/2024'
+        profession: '',
+        residenceCardExpiryDate: ''
     });
 
-    const mainUser = {
-        title: 'CEO of Apple',
-        dt1: 32,
-        dt2: 40,
-        dt3: 50,
-        firstName: 'john',
-        lastName: 'Doe',
-        midName: 'Baker',
-        gender: 'female',
-        phone: '932-555-4247',
-        email: 'janedoe@gmail.com',
-        pass: 'password123'
-    };
+    useEffect(() => {
+        getCandidateDetails(id);
+    }, [getCandidateDetails, id]);
 
-    const fullName = `${mainUser.firstName} ${mainUser.lastName}`;
+    useEffect(() => {
+        setUserDetails(selectedCandidate);
+    }, [selectedCandidate]);
 
     return (
         <MainCard title="Candidate Details" contentSX={{ padding: 0 }}>
-            <SettingsCard
-                firstName={mainUser.firstName}
-                lastName={mainUser.lastName}
-                midName={mainUser.midName}
-                phone={mainUser.phone}
-                email={mainUser.email}
-                pass={mainUser.pass}
-                gender={mainUser.gender}
-                userDetails={userDetails}
-            ></SettingsCard>
+            {loading ? <Loading /> : <SettingsCard userDetails={userDetails} setUserDetails={setUserDetails}></SettingsCard>}
         </MainCard>
     );
 };
 
-export default candidateDetails;
+const mapStateToProps = ({ user }) => {
+    const { selectedCandidate, loading } = user;
+    return { selectedCandidate, loading };
+};
+const mapDispatchToProps = (dispatch) => ({
+    getCandidateDetails: (id) => dispatch(getCandidateById(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(candidateDetails);

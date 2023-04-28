@@ -18,42 +18,19 @@ import CustomInput from './CustomInput';
 import { padding } from '@mui/system';
 
 //APP
-export default function SettingsCard(props) {
-    const { userDetails } = props;
+export default function SettingsCard({ userDetails, setUserDetails }) {
     //TAB STATES
     const [value, setValue] = React.useState('one');
-
     const handleChange = (even, newValue) => {
         setValue(newValue);
     };
 
     // GENDER SELECT STATES
-    const genderSelect = [
-        {
-            value: 'male',
-            label: 'Male'
-        },
-        {
-            value: 'female',
-            label: 'Female'
-        }
-    ];
 
     // FORM STATES
-    const [user, setUser] = useState({
-        // DEFAULT VALUES
-        firstName: props.firstName,
-        lastName: props.lastName,
-        midName: props.midName,
-        gender: props.gender,
-        phone: props.phone,
-        email: props.email,
-        pass: props.pass,
-        showPassword: false
-    });
 
     const changeField = (event) => {
-        setUser({ ...user, [event.target.name]: event.target.value });
+        setUserDetails({ ...user, [event.target.name]: event.target.value });
     };
 
     //BUTTON STATES
@@ -64,20 +41,8 @@ export default function SettingsCard(props) {
     });
 
     // EDIT -> UPDATE
-    const changeButton = (event) => {
-        event.preventDefault();
-        user.showPassword = false;
-        edit.disabled = !edit.disabled;
-        edit.isEdit = !edit.isEdit;
-        update({ ...edit });
-        console.log('user: ', user);
-    };
 
     // TOGGLE PASSWORD VISIBILITY
-    const handlePassword = () => {
-        user.showPassword = !user.showPassword;
-        setUser({ ...user });
-    };
 
     //RETURN
     return (
