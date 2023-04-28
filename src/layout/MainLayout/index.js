@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
@@ -16,6 +16,8 @@ import { SET_MENU } from 'store/actions';
 
 // assets
 import { IconChevronRight } from '@tabler/icons';
+import { getUserDetails } from 'store/actions/userActions';
+import { useEffect } from 'react';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -63,8 +65,9 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = () => {
+const MainLayout = ({ getAuthDetails }) => {
     const theme = useTheme();
+    const navigate = useNavigate();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
     // Handle left drawer
     const leftDrawerOpened = useSelector((state) => state.customization.opened);
@@ -72,6 +75,10 @@ const MainLayout = () => {
     const handleLeftDrawerToggle = () => {
         dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
     };
+
+    useEffect(() => {
+        getAuthDetails(navigate);
+    }, [getAuthDetails]);
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -103,4 +110,11 @@ const MainLayout = () => {
     );
 };
 
-export default MainLayout;
+const mapStateToProps = (state) => {
+    return state;
+};
+const mapDispatchToProps = (dispatch) => ({
+    getAuthDetails: (navigate) => dispatch(getUserDetails(navigate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
