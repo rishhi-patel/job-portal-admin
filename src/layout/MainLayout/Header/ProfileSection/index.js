@@ -8,38 +8,44 @@ import { useTheme } from '@mui/material/styles';
 import {
     Avatar,
     Box,
-    Card,
-    CardContent,
+    Button,
     Chip,
     ClickAwayListener,
     Divider,
-    Grid,
-    InputAdornment,
     List,
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    OutlinedInput,
+    Modal,
     Paper,
     Popper,
     Stack,
-    Switch,
     Typography
 } from '@mui/material';
 
 // third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
-import User1 from 'assets/images/users/user-round.svg';
 
 // assets
-import { IconLogout, IconSearch, IconSettings, IconUser, IconUserCircle } from '@tabler/icons';
+import { IconLogout, IconSettings, IconUser } from '@tabler/icons';
 
 // ==============================|| PROFILE MENU ||============================== //
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    maxWidth: '400px',
+    width: '90%',
+    bgcolor: 'background.paper',
+    borderRadius: '12px',
+    boxShadow: 24,
+    p: 4
+};
 
 const ProfileSection = () => {
     const theme = useTheme();
@@ -51,6 +57,8 @@ const ProfileSection = () => {
     const [notification, setNotification] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const [open, setOpen] = useState(false);
+
+    const [popupState, setPopupState] = useState(false);
     /**
      * anchorRef is used on different componets and specifying one type leads to other components throwing an error
      * */
@@ -249,7 +257,7 @@ const ProfileSection = () => {
                                             <ListItemButton
                                                 sx={{ borderRadius: `${customization.borderRadius}px` }}
                                                 selected={selectedIndex === 4}
-                                                onClick={handleLogout}
+                                                onClick={() => setPopupState(true)}
                                             >
                                                 <ListItemIcon>
                                                     <IconLogout stroke={1.5} size="1.3rem" />
@@ -265,6 +273,27 @@ const ProfileSection = () => {
                     </Transitions>
                 )}
             </Popper>
+            <div>
+                <Modal
+                    open={popupState}
+                    onClose={() => setPopupState(false)}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <Typography variant="h3">Are you sure to log out?</Typography>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '30px' }}>
+                            <Button variant="outlined" color="secondary" sx={{ width: '45%' }} onClick={() => handleLogout()}>
+                                Yes
+                            </Button>
+
+                            <Button variant="contained" color="error" sx={{ width: '45%' }} onClick={() => setPopupState(false)}>
+                                No
+                            </Button>
+                        </Box>
+                    </Box>
+                </Modal>
+            </div>
         </>
     );
 };
