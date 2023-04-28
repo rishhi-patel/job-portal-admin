@@ -1,9 +1,8 @@
-import { Table, TableCell, TableHead, TableRow, Typography, TableBody } from '@mui/material';
+import { Table, TableCell, TableHead, TableRow, TableBody } from '@mui/material';
 import { Box } from '@mui/system';
 import MainCard from 'ui-component/cards/MainCard';
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import Switch from '@mui/material/Switch';
 import { useNavigate } from 'react-router';
 import { IconEye } from '@tabler/icons';
 import { Link } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -31,8 +31,9 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router';
+import { authUser } from 'store/actions/userActions';
 
-const FirebaseLogin = ({ ...others }) => {
+const FirebaseLogin = ({ login, ...others }) => {
     const theme = useTheme();
     const navigate = useNavigate();
     const [checked, setChecked] = useState(true);
@@ -67,9 +68,8 @@ const FirebaseLogin = ({ ...others }) => {
 
             <Formik
                 initialValues={{
-                    email: 'test@gmail.com',
-                    password: '123456',
-                    submit: null
+                    email: 'test2@gmail.com',
+                    password: 'user@1234'
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
@@ -77,9 +77,11 @@ const FirebaseLogin = ({ ...others }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
+                        console.log({ values });
                         setStatus({ success: true });
                         setSubmitting(true);
-                        navigate('/dashboard/candidates');
+                        login(values, navigate);
+                        // navigate('/dashboard/candidates');
                     } catch (err) {
                         setStatus({ success: false });
                         setErrors({ submit: err.message });
@@ -143,8 +145,8 @@ const FirebaseLogin = ({ ...others }) => {
                                 </FormHelperText>
                             )}
                         </FormControl>
-                        {/* <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-                            <FormControlLabel
+                        <Stack direction="row" alignItems="center" justifyContent="flex-end" spacing={1}>
+                            {/* <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={checked}
@@ -154,11 +156,11 @@ const FirebaseLogin = ({ ...others }) => {
                                     />
                                 }
                                 label="Remember me"
-                            />
+                            /> */}
                             <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
                                 Forgot Password?
                             </Typography>
-                        </Stack> */}
+                        </Stack>
                         {errors.submit && (
                             <Box sx={{ mt: 3 }}>
                                 <FormHelperText error>{errors.submit}</FormHelperText>
@@ -187,4 +189,11 @@ const FirebaseLogin = ({ ...others }) => {
     );
 };
 
-export default FirebaseLogin;
+const mapStateToProps = (state) => {
+    console.log({ state });
+};
+const mapDispatchToProps = (dispatch) => ({
+    login: (values, navigate) => dispatch(authUser(values, navigate))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FirebaseLogin);
