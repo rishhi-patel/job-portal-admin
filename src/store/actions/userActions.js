@@ -15,13 +15,15 @@ export const authUser = (value, navigate) => async (dispatch) => {
                 data: { token, user },
                 message
             } = data;
+            Notification('success', message);
             dispatch({
                 type: SUCCESS_USER_LOGIN,
                 payload: user
             });
             localStorage.setItem('auth_token', token);
-            Notification('success', message);
-            window.location.href = '/dashboard/candidates';
+            setTimeout(() => {
+                window.location.href = '/dashboard/candidates';
+            }, 500);
         } else {
             dispatch({
                 type: ERROR_USER_LOGIN
