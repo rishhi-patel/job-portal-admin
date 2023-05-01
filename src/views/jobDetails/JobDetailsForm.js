@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import CardContent from '@mui/material/CardContent';
 import { FormHelperText, Grid } from '@mui/material';
@@ -9,6 +9,8 @@ import MainCard from 'ui-component/cards/MainCard';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router';
+import { connect } from 'react-redux';
+import { getCategories } from 'store/actions/categoryActions';
 
 const shifts = [
     {
@@ -24,8 +26,13 @@ const shifts = [
         label: 'night'
     }
 ];
-const JobDetailsForm = ({ details, readOnly, updateJob, setReadOnly }) => {
+const JobDetailsForm = ({ details, readOnly, saveJob, setReadOnly, fetchCategotires, industries }) => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchCategotires();
+    }, [fetchCategotires]);
+
     return (
         <Formik
             initialValues={{
@@ -42,8 +49,8 @@ const JobDetailsForm = ({ details, readOnly, updateJob, setReadOnly }) => {
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
-                    setReadOnly(true);
-                    updateJob(values, navigate);
+                    saveJob(values, navigate);
+                    if (setReadOnly) setReadOnly(true);
                 } catch (err) {
                     setStatus({ success: false });
                     setErrors({ submit: err.message });
@@ -119,6 +126,7 @@ const JobDetailsForm = ({ details, readOnly, updateJob, setReadOnly }) => {
                                 {/* ROW 3: PHONE */}
                                 <Grid item xs={6}>
                                     <CustomInput
+                                        select
                                         id="Industry"
                                         name="industry"
                                         onBlur={handleBlur}
@@ -127,6 +135,9 @@ const JobDetailsForm = ({ details, readOnly, updateJob, setReadOnly }) => {
                                         value={values.industry}
                                         error={touched.industry && errors.industry}
                                         title="Industry"
+                                        content={industries.map((option) => (
+                                            <MenuItem value={option.value}>{option.label}</MenuItem>
+                                        ))}
                                     />
                                     {touched.industry && errors.industry && (
                                         <FormHelperText error id="standard-weight-helper-text-email-login">
@@ -253,4 +264,18 @@ const JobDetailsForm = ({ details, readOnly, updateJob, setReadOnly }) => {
     );
 };
 
-export default JobDetailsForm;
+const mapStateToProps = ({ categories }) => {
+    const { categories: industries } = categories;
+    return {
+        industries: industries.map((elem) => {
+            return {
+                value: elem.name,
+                label: elem.name
+            };
+        })
+    };
+};
+const mapDispatchToProps = (dispatch) => ({
+    fetchCategotires: () => dispatch(getCategories())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(JobDetailsForm);

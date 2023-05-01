@@ -11,7 +11,10 @@ import {
     UPDATE_JOB_SUCCESS,
     DELETE_JOB,
     DELETE_JOB_ERROR,
-    DELETE_JOB_SUCCESS
+    DELETE_JOB_SUCCESS,
+    CREATE_JOB_SUCCESS,
+    CREATE_JOB,
+    CREATE_JOB_ERROR
 } from 'store/constant';
 import Notification from 'utils/Notification';
 
@@ -40,6 +43,37 @@ export const getJobs = () => async (dispatch) => {
         Notification('error');
         dispatch({
             type: GET_JOBS_ERROR
+        });
+    }
+};
+
+export const createJob = (jobDetails, navigate) => async (dispatch) => {
+    try {
+        dispatch({
+            type: CREATE_JOB
+        });
+        const {
+            data: { data, message },
+            status
+        } = await API.post(`/job`, jobDetails);
+
+        if (status === 201) {
+            dispatch({
+                type: CREATE_JOB_SUCCESS,
+                payload: data
+            });
+            Notification('success', message);
+            navigate('/dashboard/jobs');
+        } else {
+            Notification('error', message);
+            dispatch({
+                type: CREATE_JOB_ERROR
+            });
+        }
+    } catch ({ message }) {
+        Notification('error', message);
+        dispatch({
+            type: CREATE_JOB_ERROR
         });
     }
 };

@@ -41,7 +41,7 @@ function JobDetailsMain({ getJobDetails, selectedJob, loading, updateJob, delete
                     details={{
                         ...selectedJob
                     }}
-                    updateJob={updateJob}
+                    saveJob={updateJob}
                     readOnly={readOnly}
                     setReadOnly={setReadOnly}
                 />
