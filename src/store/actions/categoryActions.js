@@ -17,6 +17,10 @@ import {
 } from 'store/constant';
 import Notification from 'utils/Notification';
 
+const headers = {
+    'Content-Type': 'multipart/form-data'
+};
+
 export const changeModalState = (status) => async (dispatch) => {
     if (!status)
         dispatch({
@@ -68,7 +72,9 @@ export const createCategory = (details) => async (dispatch) => {
         dispatch({
             type: CREATE_CATEGORY
         });
-        const { data, status } = await API.post('/category', details);
+        const { data, status } = await API.post('/category', details, {
+            headers: headers
+        });
 
         if (status === 201) {
             const { data: category, message } = data;
@@ -134,7 +140,9 @@ export const updateCategory = (formData, _id) => async (dispatch) => {
         const {
             data: { data, message },
             status
-        } = await API.put(`/category/${_id}`, formData);
+        } = await API.put(`/category/${_id}`, formData, {
+            headers: headers
+        });
 
         if (status === 200) {
             dispatch({
