@@ -5,18 +5,17 @@ import CategoryCard from './CategoryCard';
 import { Button, Grid } from '@mui/material';
 import CreateCategoryModal from './CreateCategoryModal';
 import { connect } from 'react-redux';
-import { getCategories } from 'store/actions/categoryActions';
+import { changeModalState, createCategory, getCategories } from 'store/actions/categoryActions';
 import { useEffect } from 'react';
 import Loading from 'layout/loader/Loading';
 
-const CategoriesMain = ({ loading, categoryList, fetchCategotires }) => {
+const CategoriesMain = ({ loading, categoryList, fetchCategotires, createNewCategory, categoryModalState, updateModalState }) => {
     useEffect(() => {
         fetchCategotires();
     }, [fetchCategotires]);
 
-    const [open, setOpen] = React.useState(false);
     return (
-        <MainCard title="Categories" btnText="+ Add Category" btnEvent={() => setOpen(true)} sx={{ minHeight: '82vh' }}>
+        <MainCard title="Categories" btnText="+ Add Category" btnEvent={() => updateModalState(true)} sx={{ minHeight: '82vh' }}>
             {loading ? (
                 <Loading />
             ) : (
@@ -28,17 +27,19 @@ const CategoriesMain = ({ loading, categoryList, fetchCategotires }) => {
                     ))}
                 </Grid>
             )}
-            <CreateCategoryModal open={open} setOpen={setOpen} />
+            <CreateCategoryModal open={categoryModalState} setOpen={updateModalState} saveCategory={createNewCategory} />
         </MainCard>
     );
 };
 
 const mapStateToProps = ({ categories }) => {
-    const { loading, categories: categoryList } = categories;
-    return { loading, categoryList };
+    const { loading, categories: categoryList, categoryModalState } = categories;
+    return { loading, categoryList, categoryModalState };
 };
 const mapDispatchToProps = (dispatch) => ({
-    fetchCategotires: () => dispatch(getCategories())
+    fetchCategotires: () => dispatch(getCategories()),
+    createNewCategory: (data) => dispatch(createCategory(data)),
+    updateModalState: (status) => dispatch(changeModalState(status))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesMain);

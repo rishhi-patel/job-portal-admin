@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CustomInput from 'views/candidateDetails/CustomInput';
 import { CardMedia, IconButton } from '@mui/material';
-import { PhotoCamera } from '@mui/icons-material';
 
 const style = {
     position: 'absolute',
@@ -20,10 +19,21 @@ const style = {
     p: 4
 };
 
-export default function CreateCategoryModal({ open, setOpen }) {
+export default function CreateCategoryModal({ open, setOpen, saveCategory }) {
     const [image, setImage] = useState(null);
-    const handleOpen = () => setOpen(true);
+    const [categoryDetails, setCategoryDetails] = useState({ name, image: null });
     const handleClose = () => setOpen(false);
+
+    const changeImage = (file) => {
+        setImage(URL.createObjectURL(file));
+        setCategoryDetails((oldVal) => {
+            return { ...oldVal, image: file };
+        });
+    };
+
+    const handleSaveData = () => {
+        saveCategory(categoryDetails);
+    };
 
     return (
         <div>
@@ -39,7 +49,7 @@ export default function CreateCategoryModal({ open, setOpen }) {
                             component="label"
                             style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
                         >
-                            <input hidden accept="image/*" type="file" onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} />
+                            <input hidden accept="image/*" type="file" onChange={(e) => changeImage(e.target.files[0])} />
                             <img
                                 src={'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'}
                                 alt=""
@@ -48,13 +58,29 @@ export default function CreateCategoryModal({ open, setOpen }) {
                         </IconButton>
                     )}
 
-                    <CustomInput placeholder="title" />
+                    <CustomInput
+                        placeholder="title"
+                        value={categoryDetails.name}
+                        onChange={(e) =>
+                            setCategoryDetails((oldVal) => {
+                                return { ...oldVal, name: e.target.value };
+                            })
+                        }
+                    />
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '13px' }}>
-                        <Button variant="outlined" color="secondary" sx={{ width: '45%' }}>
+                        <Button variant="outlined" color="secondary" sx={{ width: '45%' }} onClick={() => handleSaveData()}>
                             Save
                         </Button>
                         {image ? (
-                            <Button variant="contained" color="error" sx={{ width: '45%' }} onClick={() => setImage(null)}>
+                            <Button
+                                variant="contained"
+                                color="error"
+                                sx={{ width: '45%' }}
+                                onClick={() => {
+                                    setImage(null);
+                                    setCategoryDetails({ name, image: null });
+                                }}
+                            >
                                 Clear
                             </Button>
                         ) : (
