@@ -4,6 +4,7 @@ import { forwardRef } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Button, Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 
 // constant
 const headerSX = {
@@ -28,6 +29,8 @@ const MainCard = forwardRef(
             title,
             btnText,
             btnEvent,
+            dltBtn,
+            dltBtnEvent,
             ...others
         },
         ref
@@ -48,12 +51,19 @@ const MainCard = forwardRef(
                     ...sx
                 }}
             >
-                {/* card header and action */}
-                {btnText && (
-                    <Button variant="contained" color="secondary" sx={{ position: 'absolute', right: 0, m: 2 }} onClick={btnEvent}>
-                        {btnText}
-                    </Button>
-                )}
+                <Box sx={{ position: 'absolute', right: 0, m: 2 }}>
+                    {btnText && (
+                        <Button variant="contained" color="secondary" onClick={btnEvent}>
+                            {btnText}
+                        </Button>
+                    )}
+                    {dltBtn && (
+                        <Button variant="contained" color="error" onClick={dltBtnEvent} sx={{ ml: 2 }}>
+                            Delete
+                        </Button>
+                    )}
+                </Box>
+
                 {title && (
                     <CardHeader
                         sx={headerSX}

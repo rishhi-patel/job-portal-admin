@@ -24,7 +24,7 @@ const shifts = [
         label: 'night'
     }
 ];
-const JobDetailsForm = ({ details, readOnly, updateJob }) => {
+const JobDetailsForm = ({ details, readOnly, updateJob, setReadOnly }) => {
     const navigate = useNavigate();
     return (
         <Formik
@@ -42,7 +42,7 @@ const JobDetailsForm = ({ details, readOnly, updateJob }) => {
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
-                    console.log({ values });
+                    setReadOnly(true);
                     updateJob(values, navigate);
                 } catch (err) {
                     setStatus({ success: false });

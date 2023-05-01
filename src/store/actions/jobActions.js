@@ -1,5 +1,4 @@
 import API from 'API';
-import {} from 'store/constant';
 import {
     GET_JOBS,
     GET_JOBS_ERROR,
@@ -9,7 +8,10 @@ import {
     GET_JOB_BY_ID_SUCCESS,
     UPDATE_JOB,
     UPDATE_JOB_ERROR,
-    UPDATE_JOB_SUCCESS
+    UPDATE_JOB_SUCCESS,
+    DELETE_JOB,
+    DELETE_JOB_ERROR,
+    DELETE_JOB_SUCCESS
 } from 'store/constant';
 import Notification from 'utils/Notification';
 
@@ -99,6 +101,36 @@ export const updateJobById = (jobDetails, navigate) => async (dispatch) => {
         Notification('error', message);
         dispatch({
             type: UPDATE_JOB_ERROR
+        });
+    }
+};
+
+export const deleteJobById = (_id, navigate) => async (dispatch) => {
+    try {
+        dispatch({
+            type: DELETE_JOB
+        });
+        const {
+            data: { message },
+            status
+        } = await API.delete(`/job/${_id}`);
+
+        if (status === 200) {
+            dispatch({
+                type: DELETE_JOB_SUCCESS
+            });
+            Notification('success', message);
+            navigate('/dashboard/jobs');
+        } else {
+            Notification('error', message);
+            dispatch({
+                type: DELETE_JOB_ERROR
+            });
+        }
+    } catch ({ message }) {
+        Notification('error', message);
+        dispatch({
+            type: DELETE_JOB_ERROR
         });
     }
 };
