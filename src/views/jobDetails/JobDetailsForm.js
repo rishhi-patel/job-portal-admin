@@ -23,13 +23,13 @@ const shifts = [
         label: 'night'
     }
 ];
-const JobDetailsForm = ({ details, edit = false }) => {
-    const [readOnly, setReadOnly] = useState(edit);
+const JobDetailsForm = ({ details, readOnly }) => {
     return (
         <Formik
             initialValues={{
                 ...details
             }}
+            enableReinitialize
             validationSchema={Yup.object().shape({
                 jobPosition: Yup.string().max(255).required('Job Position is required'),
                 jobDescription: Yup.string().max(255).required('Job Description is required'),
@@ -149,21 +149,39 @@ const JobDetailsForm = ({ details, edit = false }) => {
                                     )}
                                 </Grid>
                                 {/* ROW 3: EMAIL */}
-                                <Grid item xs={6}>
+                                <Grid item xs={3}>
                                     <CustomInput
-                                        type="Salary"
-                                        id="Salary"
-                                        name="salary"
+                                        type="minSalary"
+                                        id="minSalary"
+                                        name="minSalary"
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         disabled={readOnly}
-                                        value={values.salary}
-                                        error={touched.salary && errors.salary}
-                                        title="Salary"
+                                        value={values.minSalary}
+                                        error={touched.minSalary && errors.minSalary}
+                                        title="Min. Salary"
                                     />
-                                    {touched.salary && errors.salary && (
+                                    {touched.minSalary && errors.minSalary && (
                                         <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.salary}
+                                            {errors.minSalary}
+                                        </FormHelperText>
+                                    )}
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <CustomInput
+                                        type="maxSalary"
+                                        id="maxSalary"
+                                        name="maxSalary"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        disabled={readOnly}
+                                        value={values.maxSalary}
+                                        error={touched.maxSalary && errors.maxSalary}
+                                        title="Max. Salary"
+                                    />
+                                    {touched.maxSalary && errors.maxSalary && (
+                                        <FormHelperText error id="standard-weight-helper-text-email-login">
+                                            {errors.maxSalary}
                                         </FormHelperText>
                                     )}
                                 </Grid>
@@ -222,17 +240,6 @@ const JobDetailsForm = ({ details, edit = false }) => {
                                     />
                                 </Grid>{' '}
                                 {/* BUTTON */}
-                                <Grid container justifyContent={{ xs: 'center', md: 'flex-end' }} item xs={12}>
-                                    {readOnly ? (
-                                        <Button variant="contained" color="secondary" sx={{ p: 1 }} onClick={() => setReadOnly(false)}>
-                                            Edit
-                                        </Button>
-                                    ) : (
-                                        <Button variant="contained" color="secondary" sx={{ p: 1 }} type="submit">
-                                            Save
-                                        </Button>
-                                    )}
-                                </Grid>
                             </Grid>
                         </FormControl>
                     </CardContent>

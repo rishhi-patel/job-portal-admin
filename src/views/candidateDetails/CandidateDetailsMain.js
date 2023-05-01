@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import Loading from 'layout/loader/Loading';
 
 const candidateDetails = ({ getCandidateDetails, selectedCandidate, loading }) => {
-    console.log({ loading });
     const { id } = useParams();
     const [userDetails, setUserDetails] = useState({
         firstName: '',

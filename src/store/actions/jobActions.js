@@ -1,5 +1,5 @@
 import API from 'API';
-import { GET_JOBS, GET_JOBS_ERROR, GET_JOBS_SUCCESS } from 'store/constant';
+import { GET_JOBS, GET_JOBS_ERROR, GET_JOBS_SUCCESS, GET_JOB_BY_ID, GET_JOB_BY_ID_ERROR, GET_JOB_BY_ID_SUCCESS } from 'store/constant';
 import Notification from 'utils/Notification';
 
 export const getJobs = () => async (dispatch) => {
@@ -27,6 +27,35 @@ export const getJobs = () => async (dispatch) => {
         Notification('error');
         dispatch({
             type: GET_JOBS_ERROR
+        });
+    }
+};
+
+export const getJobById = (_id) => async (dispatch) => {
+    try {
+        dispatch({
+            type: GET_JOB_BY_ID
+        });
+        const {
+            data: { data, message },
+            status
+        } = await API.get(`/job/${_id}`);
+
+        if (status === 200) {
+            dispatch({
+                type: GET_JOB_BY_ID_SUCCESS,
+                payload: data
+            });
+        } else {
+            Notification('error', message);
+            dispatch({
+                type: GET_JOB_BY_ID_ERROR
+            });
+        }
+    } catch (error) {
+        Notification('error');
+        dispatch({
+            type: GET_JOB_BY_ID_ERROR
         });
     }
 };
