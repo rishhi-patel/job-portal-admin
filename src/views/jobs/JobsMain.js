@@ -1,12 +1,15 @@
-import { Table, TableCell, TableHead, TableRow, Typography, TableBody } from '@mui/material';
+import { Table, TableCell, TableHead, TableRow, TableBody } from '@mui/material';
 import { Box } from '@mui/system';
 import MainCard from 'ui-component/cards/MainCard';
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import Switch from '@mui/material/Switch';
 import { useNavigate } from 'react-router';
 import { IconEye } from '@tabler/icons';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getJobs } from 'store/actions/jobActions';
+import { useEffect } from 'react';
+import Loading from 'layout/loader/Loading';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -62,7 +65,7 @@ const dataList = [
     }
 ];
 
-const JobsMain = () => {
+const JobsMain = ({ getJobList, jobList, loading }) => {
     const navigate = useNavigate();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -78,65 +81,66 @@ const JobsMain = () => {
         setPage(0);
     };
 
+    useEffect(() => {
+        getJobList();
+    }, [getJobList]);
+
     return (
         <MainCard title="Jobs" btnText="+ Add Job" btnEvent={() => navigate('/dashboard/jobs/new')}>
-            <Box className="plan" style={{ overflowY: 'auto' }}>
-                <StyledTable>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">No.</TableCell>
-                            <TableCell align="center">Job Position</TableCell>
-                            <TableCell align="center">Industry</TableCell>
-                            <TableCell align="center">Salary </TableCell>
-                            <TableCell align="center">Job location </TableCell>
-                            <TableCell align="center">View</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody style={{ padding: '10px' }}>
-                        {dataList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((jobData) => (
-                            <TableRow key={jobData.id}>
-                                <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                    {jobData.id}
-                                </TableCell>
-                                <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                    {jobData.jobPosition}
-                                </TableCell>
-                                <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                    {jobData.Industry}
-                                </TableCell>
-                                <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                    {jobData.Salary}
-                                </TableCell>
-                                <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                    {jobData.JobLocation}
-                                </TableCell>
-
-                                <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                    <Link to={'1'}>
-                                        <IconEye />
-                                    </Link>
-                                </TableCell>
+            {loading ? (
+                <Loading />
+            ) : (
+                <Box className="plan" style={{ overflowY: 'auto' }}>
+                    <StyledTable>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="center">No.</TableCell>
+                                <TableCell align="center">Job Position</TableCell>
+                                <TableCell align="center">Industry</TableCell>
+                                <TableCell align="center">Salary </TableCell>
+                                <TableCell align="center">Job location </TableCell>
+                                <TableCell align="center">View</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </StyledTable>
+                        </TableHead>
+                        <TableBody style={{ padding: '10px' }}>
+                            {jobList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((jobData, i) => (
+                                <TableRow key={jobData._id}>
+                                    <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                        {i + 1}
+                                    </TableCell>
+                                    <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                        {jobData.jobPosition}
+                                    </TableCell>
+                                    <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                        {jobData.industry}
+                                    </TableCell>
+                                    <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                        Iei {jobData.minSalary} - Iei {jobData.maxSalary}
+                                    </TableCell>
+                                    <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                        {jobData.jobLocation}
+                                    </TableCell>
 
-                {/* <TablePagination
-                    sx={{ px: 2 }}
-                    page={page}
-                    component="div"
-                    className="page"
-                    rowsPerPage={rowsPerPage}
-                    count={dataList.length}
-                    onPageChange={handleChangePage}
-                    rowsPerPageOptions={[5, 10, 25]}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    nextIconButtonProps={{ 'aria-label': 'Next Page' }}
-                    backIconButtonProps={{ 'aria-label': 'Previous Page' }}
-                /> */}
-            </Box>
+                                    <TableCell align="center" style={{ paddingLeft: 16 }}>
+                                        <Link to={jobData._id}>
+                                            <IconEye />
+                                        </Link>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </StyledTable>
+                </Box>
+            )}
         </MainCard>
     );
 };
 
-export default JobsMain;
+const mapStateToProps = ({ jobs }) => {
+    const { jobList, loading } = jobs;
+    return { jobList, loading };
+};
+const mapDispatchToProps = (dispatch) => ({
+    getJobList: () => dispatch(getJobs())
+});
+export default connect(mapStateToProps, mapDispatchToProps)(JobsMain);
