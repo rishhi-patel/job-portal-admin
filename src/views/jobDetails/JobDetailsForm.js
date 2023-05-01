@@ -8,6 +8,7 @@ import CustomInput from 'views/candidateDetails/CustomInput';
 import MainCard from 'ui-component/cards/MainCard';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router';
 
 const shifts = [
     {
@@ -23,7 +24,8 @@ const shifts = [
         label: 'night'
     }
 ];
-const JobDetailsForm = ({ details, readOnly }) => {
+const JobDetailsForm = ({ details, readOnly, updateJob }) => {
+    const navigate = useNavigate();
     return (
         <Formik
             initialValues={{
@@ -41,6 +43,7 @@ const JobDetailsForm = ({ details, readOnly }) => {
             onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                 try {
                     console.log({ values });
+                    updateJob(values, navigate);
                 } catch (err) {
                     setStatus({ success: false });
                     setErrors({ submit: err.message });
@@ -48,7 +51,7 @@ const JobDetailsForm = ({ details, readOnly }) => {
                 }
             }}
         >
-            {({ errors, handleBlur, handleSubmit, handleChange, isSubmitting, touched, values }) => (
+            {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit}>
                     <CardContent
                         sx={{
@@ -240,6 +243,7 @@ const JobDetailsForm = ({ details, readOnly }) => {
                                     />
                                 </Grid>{' '}
                                 {/* BUTTON */}
+                                <button type="submit" id="jobSubmit" style={{ opacity: 0 }}></button>
                             </Grid>
                         </FormControl>
                     </CardContent>
