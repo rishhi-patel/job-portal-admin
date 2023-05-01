@@ -5,11 +5,29 @@ import CategoryCard from './CategoryCard';
 import { Button, Grid } from '@mui/material';
 import CreateCategoryModal from './CreateCategoryModal';
 import { connect } from 'react-redux';
-import { changeModalState, createCategory, getCategories } from 'store/actions/categoryActions';
+import {
+    changeCategorySelection,
+    changeModalState,
+    createCategory,
+    deleteCategory,
+    getCategories,
+    updateCategory
+} from 'store/actions/categoryActions';
 import { useEffect } from 'react';
 import Loading from 'layout/loader/Loading';
 
-const CategoriesMain = ({ loading, categoryList, fetchCategotires, createNewCategory, categoryModalState, updateModalState }) => {
+const CategoriesMain = ({
+    loading,
+    categoryList,
+    fetchCategotires,
+    createNewCategory,
+    categoryModalState,
+    updateModalState,
+    selectedCategory,
+    updateSelectedCategory,
+    updateCategoryDetails,
+    deleteCategoryById
+}) => {
     useEffect(() => {
         fetchCategotires();
     }, [fetchCategotires]);
@@ -22,24 +40,37 @@ const CategoriesMain = ({ loading, categoryList, fetchCategotires, createNewCate
                 <Grid container spacing={6}>
                     {categoryList.map((category) => (
                         <Grid item lg={3} md={4} sm={6} xs={12} key={category._id}>
-                            <CategoryCard category={category} />
+                            <CategoryCard
+                                category={category}
+                                updateSelectedCategory={updateSelectedCategory}
+                                deleteCategoryById={deleteCategoryById}
+                            />
                         </Grid>
                     ))}
                 </Grid>
             )}
-            <CreateCategoryModal open={categoryModalState} setOpen={updateModalState} saveCategory={createNewCategory} />
+            <CreateCategoryModal
+                open={categoryModalState}
+                setOpen={updateModalState}
+                saveCategory={createNewCategory}
+                selectedCategory={selectedCategory}
+                updateCategoryDetails={updateCategoryDetails}
+            />
         </MainCard>
     );
 };
 
 const mapStateToProps = ({ categories }) => {
-    const { loading, categories: categoryList, categoryModalState } = categories;
-    return { loading, categoryList, categoryModalState };
+    const { loading, categories: categoryList, categoryModalState, selectedCategory } = categories;
+    return { loading, categoryList, categoryModalState, selectedCategory };
 };
 const mapDispatchToProps = (dispatch) => ({
     fetchCategotires: () => dispatch(getCategories()),
     createNewCategory: (data) => dispatch(createCategory(data)),
-    updateModalState: (status) => dispatch(changeModalState(status))
+    updateModalState: (status) => dispatch(changeModalState(status)),
+    updateSelectedCategory: (category) => dispatch(changeCategorySelection(category)),
+    updateCategoryDetails: (data, _id) => dispatch(updateCategory(data, _id)),
+    deleteCategoryById: (_id) => dispatch(deleteCategory(_id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoriesMain);

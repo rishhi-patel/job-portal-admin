@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -19,10 +19,14 @@ const style = {
     p: 4
 };
 
-export default function CreateCategoryModal({ open, setOpen, saveCategory }) {
+export default function CreateCategoryModal({ open, setOpen, saveCategory, selectedCategory, updateCategoryDetails }) {
     const [image, setImage] = useState(null);
     const [categoryDetails, setCategoryDetails] = useState({ name, image: null });
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        setOpen(false);
+        setImage(null);
+        setCategoryDetails({ name, image: null });
+    };
 
     const changeImage = (file) => {
         setImage(URL.createObjectURL(file));
@@ -31,8 +35,19 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory }) {
         });
     };
 
+    useEffect(() => {
+        if (selectedCategory) {
+            setCategoryDetails(selectedCategory);
+            setImage(selectedCategory.image.url);
+        }
+    }, [selectedCategory]);
+
     const handleSaveData = () => {
-        saveCategory(categoryDetails);
+        const formData = new FormData();
+        formData.append('name', categoryDetails.name);
+        formData.append('image', categoryDetails.image);
+        if (selectedCategory) updateCategoryDetails(formData, selectedCategory._id);
+        else saveCategory(formData);
     };
 
     return (
@@ -78,7 +93,9 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory }) {
                                 sx={{ width: '45%' }}
                                 onClick={() => {
                                     setImage(null);
-                                    setCategoryDetails({ name, image: null });
+                                    setCategoryDetails((oldSate) => {
+                                        return { ...oldSate, name: '', image: null };
+                                    });
                                 }}
                             >
                                 Clear

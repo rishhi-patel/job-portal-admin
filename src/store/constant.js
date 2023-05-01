@@ -4,6 +4,7 @@ export const drawerWidth = 260;
 export const appDrawerWidth = 320;
 
 export const CHANGE_CATEGORY_MODAL_STATE = 'CHANGE_CATEGORY_MODAL_STATE';
+export const CHANGE_SELECTED_CATEGORY = 'CHANGE_SELECTED_CATEGORY';
 
 export const USER_LOGIN = 'USER_LOGIN';
 export const SUCCESS_USER_LOGIN = 'SUCCESS_USER_LOGIN';

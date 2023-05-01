@@ -10,7 +10,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-export default function CategoryCard({ category }) {
+export default function CategoryCard({ category, updateSelectedCategory, deleteCategoryById }) {
     const { image, name } = category;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -30,10 +30,26 @@ export default function CategoryCard({ category }) {
                 </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: 'space-between', paddingTop: 0 }}>
-                <Button disableElevation type="submit" variant="outlined" color="secondary" size="small" sx={{ width: '45%' }}>
+                <Button
+                    disableElevation
+                    type="submit"
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    sx={{ width: '45%' }}
+                    onClick={() => updateSelectedCategory(category)}
+                >
                     Edit
                 </Button>
-                <Button disableElevation type="submit" variant="contained" color="error" size="small" sx={{ width: '45%' }}>
+                <Button
+                    disableElevation
+                    type="submit"
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    sx={{ width: '45%' }}
+                    onClick={() => deleteCategoryById(category._id)}
+                >
                     Delete
                 </Button>
             </CardActions>
