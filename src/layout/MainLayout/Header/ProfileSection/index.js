@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -47,7 +47,8 @@ const style = {
     p: 4
 };
 
-const ProfileSection = () => {
+const ProfileSection = ({ userDetails }) => {
+    console.log({ userDetails });
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
     const navigate = useNavigate();
@@ -75,14 +76,6 @@ const ProfileSection = () => {
         setOpen(false);
     };
 
-    const handleListItemClick = (event, index, route = '') => {
-        setSelectedIndex(index);
-        handleClose(event);
-
-        if (route && route !== '') {
-            navigate(route);
-        }
-    };
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
@@ -166,12 +159,14 @@ const ProfileSection = () => {
                                     <Box sx={{ p: 2 }}>
                                         <Stack>
                                             <Stack direction="row" spacing={0.5} alignItems="center">
-                                                <Typography variant="h4">Good Morning,</Typography>
-                                                <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                                                    Johne Doe
+                                                {/* <Typography variant="h4">Good Morning,</Typography> */}
+                                                <Typography component="span" variant="h3">
+                                                    {userDetails.firstName} {userDetails.lastName}
                                                 </Typography>
                                             </Stack>
-                                            <Typography variant="subtitle2"> test@gmail.com</Typography>
+                                            <Typography variant="h5" sx={{ fontWeight: 400 }}>
+                                                {userDetails.email}
+                                            </Typography>
                                         </Stack>
                                         {/* <OutlinedInput
                                             sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
@@ -298,4 +293,10 @@ const ProfileSection = () => {
     );
 };
 
-export default ProfileSection;
+const mapStateToProps = ({ user }) => {
+    const { userDetails } = user;
+    return { userDetails };
+};
+const mapDispatchToProps = () => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileSection);
