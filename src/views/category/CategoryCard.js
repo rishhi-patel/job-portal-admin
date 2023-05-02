@@ -9,6 +9,7 @@ import { IconButton } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Box } from '@mui/system';
 
 export default function CategoryCard({ category, updateSelectedCategory, deleteCategoryById }) {
     const { image, name } = category;
@@ -23,7 +24,14 @@ export default function CategoryCard({ category, updateSelectedCategory, deleteC
 
     return (
         <Card sx={{ maxWidth: 345, boxShadow: 3, position: 'relative' }}>
-            <CardMedia sx={{ height: 140 }} image={image.url} title="green iguana" />
+            {/* <CardMedia
+                sx={{ height: 150, backgroundSize: 'contain', backgroundRepeat: 'no-repeat' }}
+                image={image.url}
+                title="green iguana"
+            /> */}
+            <Box sx={{ height: 150 }}>
+                <img src={image.url} alt="" style={{ height: '100%', width: '100%' }} />
+            </Box>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {name}
@@ -33,7 +41,7 @@ export default function CategoryCard({ category, updateSelectedCategory, deleteC
                 <Button
                     disableElevation
                     type="submit"
-                    variant="outlined"
+                    variant="contained"
                     color="secondary"
                     size="small"
                     sx={{ width: '45%' }}
@@ -44,7 +52,7 @@ export default function CategoryCard({ category, updateSelectedCategory, deleteC
                 <Button
                     disableElevation
                     type="submit"
-                    variant="contained"
+                    variant="outlined"
                     color="error"
                     size="small"
                     sx={{ width: '45%' }}

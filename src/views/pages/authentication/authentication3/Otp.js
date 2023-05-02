@@ -30,7 +30,7 @@ const Otp = ({ sendOtp, verifyUserOtp, ...others }) => {
                 <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
                     <Grid item xs={12}>
                         <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
-                            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+                            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }} md={4}>
                                 <AuthCardWrapper>
                                     <Grid container spacing={2} alignItems="center" justifyContent="center">
                                         <Grid item>
@@ -89,9 +89,7 @@ const Otp = ({ sendOtp, verifyUserOtp, ...others }) => {
                                                             error={Boolean(touched.email && errors.email)}
                                                             sx={{ ...theme.typography.customInput }}
                                                         >
-                                                            <InputLabel htmlFor="outlined-adornment-email-login">
-                                                                Email Address / Username
-                                                            </InputLabel>
+                                                            <InputLabel htmlFor="outlined-adornment-email-login">Email Address</InputLabel>
                                                             <OutlinedInput
                                                                 id="outlined-adornment-email-login"
                                                                 type="email"
@@ -99,7 +97,7 @@ const Otp = ({ sendOtp, verifyUserOtp, ...others }) => {
                                                                 name="email"
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
-                                                                label="Email Address / Username"
+                                                                label="Email Address"
                                                                 inputProps={{}}
                                                             />
                                                             {touched.email && errors.email && (

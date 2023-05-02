@@ -39,7 +39,7 @@ const CategoriesMain = ({
             ) : (
                 <Grid container spacing={6}>
                     {categoryList.map((category) => (
-                        <Grid item lg={3} md={4} sm={6} xs={12} key={category._id}>
+                        <Grid item xl={3} lg={4} md={6} sm={6} xs={12} key={category._id}>
                             <CategoryCard
                                 category={category}
                                 updateSelectedCategory={updateSelectedCategory}

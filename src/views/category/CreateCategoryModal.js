@@ -83,12 +83,12 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory, selec
                         }
                     />
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '13px' }}>
-                        <Button variant="outlined" color="secondary" sx={{ width: '45%' }} onClick={() => handleSaveData()}>
+                        <Button variant="contained" color="secondary" sx={{ width: '45%' }} onClick={() => handleSaveData()}>
                             Save
                         </Button>
                         {image ? (
                             <Button
-                                variant="contained"
+                                variant="outlined"
                                 color="error"
                                 sx={{ width: '45%' }}
                                 onClick={() => {
@@ -101,7 +101,7 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory, selec
                                 Clear
                             </Button>
                         ) : (
-                            <Button variant="contained" color="error" sx={{ width: '45%' }} onClick={handleClose}>
+                            <Button variant="outlined" color="error" sx={{ width: '45%' }} onClick={handleClose}>
                                 Cancel
                             </Button>
                         )}

@@ -16,7 +16,7 @@ const StyledTable = styled(Table)(() => ({
         '& tr': { '& th': { paddingLeft: 0, paddingRight: 0 } }
     },
     '& tbody': {
-        '& tr': { '& td': { paddingLeft: 0, textTransform: 'capitalize' } }
+        '& tr': { '& td': { paddingLeft: 0 } }
     }
 }));
 
@@ -94,7 +94,7 @@ const CandidatesMain = ({ getCandidateList, candidates, loading }) => {
                             {candidates.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((userData, i) => (
                                 <TableRow key={userData._id}>
                                     <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                        #{i + 1}
+                                        {i + 1}
                                     </TableCell>
                                     <TableCell align="center" style={{ paddingLeft: 16 }}>
                                         {userData.firstName}

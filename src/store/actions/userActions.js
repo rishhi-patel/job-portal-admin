@@ -134,7 +134,7 @@ export const generateOTP = (email) => async (dispatch) => {
         } = await API.post(`/user/admin/otp`, { email });
 
         if (status === 200) {
-            Notification('sucess', message);
+            Notification('success', message);
         } else {
             Notification('error', message);
         }
@@ -169,7 +169,7 @@ export const resetPassword = (userDetails, navigate) => async (dispatch) => {
             status
         } = await API.post(`/user/admin/password/${token}`, { password });
         if (status === 200) {
-            Notification('sucess', message);
+            Notification('success', message);
             navigate(`/`);
         } else {
             Notification('error', message);
