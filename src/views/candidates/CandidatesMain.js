@@ -100,7 +100,7 @@ const CandidatesMain = ({ getCandidateList, candidates, loading }) => {
                                         {userData.firstName}
                                     </TableCell>
                                     <TableCell align="center" style={{ paddingLeft: 16 }}>
-                                        {userData.mobile}
+                                        {userData.phoneNumber1 ? userData.phoneNumber1 : userData.phoneNumber2}
                                     </TableCell>
                                     <TableCell align="center" style={{ paddingLeft: 16 }}>
                                         {userData.email}
