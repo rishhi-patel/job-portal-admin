@@ -132,14 +132,18 @@ export default function SettingsCard({ userDetails, setUserDetails }) {
                                         <CustomInput
                                             id="phone"
                                             name="phone"
-                                            value={userDetails.phoneNumber1}
+                                            value={userDetails.phoneNumber1?.slice(3)}
                                             onChange={changeField}
                                             title="Phone Number 1"
                                             dis={edit.disabled}
                                             req={edit.required}
                                             //DIALING CODE
                                             InputProps={{
-                                                startAdornment: <InputAdornment position="start">+40</InputAdornment>
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        {userDetails.phoneNumber1?.slice(0, 3)}
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
                                     </Grid>
@@ -147,14 +151,18 @@ export default function SettingsCard({ userDetails, setUserDetails }) {
                                         <CustomInput
                                             id="phone"
                                             name="phone"
-                                            value={userDetails.phoneNumber2}
+                                            value={userDetails.phoneNumber2?.slice(3)}
                                             onChange={changeField}
                                             title="Phone Number 2"
                                             dis={edit.disabled}
                                             req={edit.required}
                                             //DIALING CODE
                                             InputProps={{
-                                                startAdornment: <InputAdornment position="start">+40</InputAdornment>
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        {userDetails.phoneNumber2?.slice(0, 3)}
+                                                    </InputAdornment>
+                                                )
                                             }}
                                         />
                                     </Grid>
