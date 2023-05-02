@@ -141,6 +141,15 @@ const Otp = ({ sendOtp, verifyUserOtp, ...others }) => {
                                                                         label="OTP"
                                                                         inputProps={{}}
                                                                         error={touched.otp && errors.otp}
+                                                                        onKeyPress={(event) => {
+                                                                            var charCode = event.which ? event.which : event.keyCode;
+                                                                            if (
+                                                                                String.fromCharCode(charCode).match(/[^0-9]/g) ||
+                                                                                event.target.value.length > 5
+                                                                            ) {
+                                                                                event.preventDefault();
+                                                                            }
+                                                                        }}
                                                                     />
                                                                     {touched.otp && errors.otp && (
                                                                         <FormHelperText error id="standard-weight-helper-text-email-login">

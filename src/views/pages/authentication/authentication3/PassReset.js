@@ -42,6 +42,10 @@ const PassReset = ({ updatePassowrd, ...others }) => {
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const handleClickShowConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+    };
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
@@ -83,7 +87,12 @@ const PassReset = ({ updatePassowrd, ...others }) => {
                                                     password: '',
                                                     confirmPassword: ''
                                                 }}
-                                                // validationSchema={Yup.object().shape({})}
+                                                validationSchema={Yup.object().shape({
+                                                    password: Yup.string().max(255).required('Required'),
+                                                    confirmPassword: Yup.string()
+                                                        .oneOf([Yup.ref('password'), null], 'Passsword doesnot match')
+                                                        .required('Required')
+                                                })}
                                                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                                                     try {
                                                         updatePassowrd({ password: values.password, token }, navigate);
@@ -143,7 +152,7 @@ const PassReset = ({ updatePassowrd, ...others }) => {
                                                             </InputLabel>
                                                             <OutlinedInput
                                                                 id="outlined-adornment-password-login"
-                                                                type={showPassword ? 'text' : 'password'}
+                                                                type={showConfirmPassword ? 'text' : 'password'}
                                                                 value={values.confirmPassword}
                                                                 name="confirmPassword"
                                                                 onBlur={handleBlur}
@@ -152,12 +161,12 @@ const PassReset = ({ updatePassowrd, ...others }) => {
                                                                     <InputAdornment position="end">
                                                                         <IconButton
                                                                             aria-label="toggle password visibility"
-                                                                            onClick={handleClickShowPassword}
+                                                                            onClick={handleClickShowConfirmPassword}
                                                                             onMouseDown={handleMouseDownPassword}
                                                                             edge="end"
                                                                             size="large"
                                                                         >
-                                                                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                                            {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                                                                         </IconButton>
                                                                     </InputAdornment>
                                                                 }
