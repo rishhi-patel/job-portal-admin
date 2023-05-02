@@ -32,6 +32,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from 'react-router';
 import { authUser } from 'store/actions/userActions';
+import { Link } from 'react-router-dom';
 
 const FirebaseLogin = ({ login, ...others }) => {
     const theme = useTheme();
@@ -157,9 +158,11 @@ const FirebaseLogin = ({ login, ...others }) => {
                                 }
                                 label="Remember me"
                             /> */}
-                            <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
-                                Forgot Password?
-                            </Typography>
+                            <Link to="/otp">
+                                <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
+                                    Forgot Password?
+                                </Typography>
+                            </Link>
                         </Stack>
                         {errors.submit && (
                             <Box sx={{ mt: 3 }}>

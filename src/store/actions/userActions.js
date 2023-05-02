@@ -125,3 +125,56 @@ export const getCandidateById = (_id) => async (dispatch) => {
         });
     }
 };
+
+export const generateOTP = (email) => async (dispatch) => {
+    try {
+        const {
+            data: { message },
+            status
+        } = await API.post(`/user/admin/otp`, { email });
+
+        if (status === 200) {
+            Notification('sucess', message);
+        } else {
+            Notification('error', message);
+        }
+    } catch (error) {
+        Notification('error');
+    }
+};
+
+export const verifyOTP = (userData, navigate) => async (dispatch) => {
+    try {
+        const {
+            data: { message, data },
+            status
+        } = await API.post(`/user/admin/verify-otp`, userData);
+        if (status === 200) {
+            const { token } = data;
+            Notification('success', message);
+            navigate(`/password-reset/${token}`);
+        } else {
+            Notification('error', message);
+        }
+    } catch ({ message }) {
+        Notification('error', message);
+    }
+};
+
+export const resetPassword = (userDetails, navigate) => async (dispatch) => {
+    try {
+        const { token, password } = userDetails;
+        const {
+            data: { message },
+            status
+        } = await API.post(`/user/admin/password/${token}`, { password });
+        if (status === 200) {
+            Notification('sucess', message);
+            navigate(`/`);
+        } else {
+            Notification('error', message);
+        }
+    } catch (error) {
+        Notification('error');
+    }
+};
