@@ -175,7 +175,7 @@ const Otp = ({ sendOtp, verifyUserOtp, ...others }) => {
                                                                     variant="contained"
                                                                     color="secondary"
                                                                 >
-                                                                    {otpSent ? 'Verify' : 'Send Otp'}
+                                                                    {otpSent ? 'Verify' : 'Send OTP'}
                                                                 </Button>
                                                             </AnimateButton>
                                                         </Box>
