@@ -1,4 +1,4 @@
-import { Table, TableCell, TableHead, TableRow, TableBody } from '@mui/material';
+import { Table, TableCell, TableHead, TableRow, TableBody, TablePagination } from '@mui/material';
 import { Box } from '@mui/system';
 import MainCard from 'ui-component/cards/MainCard';
 import styled from '@emotion/styled';
@@ -26,44 +26,6 @@ const StyledTable = styled(Table)(() => ({
         '& tr': { '& td': { paddingLeft: 0, textTransform: 'capitalize' } }
     }
 }));
-
-const dataList = [
-    {
-        id: 1,
-        jobPosition: 'Jr. React Developer',
-        Industry: 'IT',
-        Salary: 'Iei 10000 -  Iei 20000',
-        JobLocation: ' US'
-    },
-    {
-        id: 2,
-        jobPosition: 'Sr. React Developer',
-        Industry: 'IT',
-        Salary: 'Iei 10000 -  Iei 20000',
-        JobLocation: ' US'
-    },
-    {
-        id: 3,
-        jobPosition: 'Sr. React Developer',
-        Industry: 'IT',
-        Salary: 'Iei 10000 -  Iei 20000',
-        JobLocation: ' US'
-    },
-    {
-        id: 4,
-        jobPosition: 'Jr. React Developer',
-        Industry: 'IT',
-        Salary: 'Iei 10000 -  Iei 20000',
-        JobLocation: ' US'
-    },
-    {
-        id: 5,
-        jobPosition: 'Jr. React Developer',
-        Industry: 'IT',
-        Salary: 'Iei 10000 -  Iei 20000',
-        JobLocation: ' US'
-    }
-];
 
 const JobsMain = ({ getJobList, jobList, loading }) => {
     const navigate = useNavigate();
@@ -130,6 +92,19 @@ const JobsMain = ({ getJobList, jobList, loading }) => {
                             ))}
                         </TableBody>
                     </StyledTable>
+                    <TablePagination
+                        sx={{ px: 2 }}
+                        page={page}
+                        component="div"
+                        className="page"
+                        rowsPerPage={rowsPerPage}
+                        count={jobList.length}
+                        onPageChange={handleChangePage}
+                        rowsPerPageOptions={[5, 10, 25]}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        nextIconButtonProps={{ 'aria-label': 'Next Page' }}
+                        backIconButtonProps={{ 'aria-label': 'Previous Page' }}
+                    />
                 </Box>
             )}
         </MainCard>

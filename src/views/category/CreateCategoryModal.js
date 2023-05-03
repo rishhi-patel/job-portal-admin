@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CustomInput from 'views/candidateDetails/CustomInput';
 import { CardMedia, IconButton } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const style = {
     position: 'absolute',
@@ -56,21 +57,39 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory, selec
                 <Box sx={style}>
                     <Typography variant="h3">Create Category</Typography>
                     {image ? (
-                        <CardMedia sx={{ height: 200, borderRadius: '12px', marginTop: '13px' }} image={image} title="green iguana" />
+                        <>
+                            <IconButton
+                                aria-label="delete"
+                                sx={{ position: 'absolute', right: 32, marginTop: '12px' }}
+                                onClick={() => {
+                                    setImage(null);
+                                    setCategoryDetails((oldSate) => {
+                                        return { ...oldSate, image: null };
+                                    });
+                                }}
+                            >
+                                <CancelIcon />
+                            </IconButton>
+                            <CardMedia sx={{ height: 200, borderRadius: '12px', marginTop: '13px' }} image={image} title="green iguana" />
+                        </>
                     ) : (
-                        <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label"
-                            style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
-                        >
-                            <input hidden accept="image/*" type="file" onChange={(e) => changeImage(e.target.files[0])} />
-                            <img
-                                src={'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'}
-                                alt=""
-                                style={{ height: 200, width: 200 }}
-                            />
-                        </IconButton>
+                        <>
+                            <IconButton
+                                color="primary"
+                                aria-label="upload picture"
+                                component="label"
+                                style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
+                            >
+                                <input hidden accept="image/*" type="file" onChange={(e) => changeImage(e.target.files[0])} />
+                                <img
+                                    src={
+                                        'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
+                                    }
+                                    alt=""
+                                    style={{ height: 200, width: 200 }}
+                                />
+                            </IconButton>
+                        </>
                     )}
 
                     <CustomInput
@@ -83,9 +102,6 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory, selec
                         }
                     />
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: '13px' }}>
-                        <Button variant="contained" color="secondary" sx={{ width: '45%' }} onClick={() => handleSaveData()}>
-                            Save
-                        </Button>
                         {image ? (
                             <Button
                                 variant="outlined"
@@ -104,7 +120,10 @@ export default function CreateCategoryModal({ open, setOpen, saveCategory, selec
                             <Button variant="outlined" color="error" sx={{ width: '45%' }} onClick={handleClose}>
                                 Cancel
                             </Button>
-                        )}
+                        )}{' '}
+                        <Button variant="contained" color="secondary" sx={{ width: '45%' }} onClick={() => handleSaveData()}>
+                            Save
+                        </Button>
                     </Box>
                 </Box>
             </Modal>

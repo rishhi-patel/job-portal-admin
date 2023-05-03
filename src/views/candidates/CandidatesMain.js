@@ -1,4 +1,4 @@
-import { Table, TableCell, TableHead, TableRow, TableBody } from '@mui/material';
+import { Table, TableCell, TableHead, TableRow, TableBody, TablePagination } from '@mui/material';
 import { Box } from '@mui/system';
 import MainCard from 'ui-component/cards/MainCard';
 import styled from '@emotion/styled';
@@ -20,51 +20,6 @@ const StyledTable = styled(Table)(() => ({
     }
 }));
 
-const dataList = [
-    {
-        id: 1,
-        userName: 'Jay Patel',
-        mobile: '9876543211',
-        email: 'johntest@gmail.com',
-        status: 'block'
-    },
-    {
-        id: 2,
-        userName: 'Mayank tejani',
-        mobile: '9126543211',
-        email: 'mayanktejani@gmail.com',
-        status: 'block'
-    },
-    {
-        id: 3,
-        userName: 'Kuldeep Yadav',
-        mobile: '9876577777',
-        email: 'Kuldeep23@gmail.com',
-        status: 'block'
-    },
-    {
-        id: 4,
-        userName: 'Divya Sharma',
-        mobile: '9872243211',
-        email: 'divyasharma34@gmail.com',
-        status: 'block'
-    },
-    {
-        id: 5,
-        userName: 'Krupa Pandit',
-        mobile: '9922771188',
-        email: 'krupapandit90@gmail.com',
-        status: 'block'
-    },
-    {
-        id: 6,
-        userName: 'Harsh Mevani',
-        mobile: '6790126733',
-        email: 'harshmevani9@gmail.com',
-        status: 'block'
-    }
-];
-
 const CandidatesMain = ({ getCandidateList, candidates, loading }) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -72,6 +27,15 @@ const CandidatesMain = ({ getCandidateList, candidates, loading }) => {
     useEffect(() => {
         getCandidateList();
     }, [getCandidateList]);
+
+    const handleChangePage = (_, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
 
     return (
         <MainCard title="Candidates">
@@ -115,19 +79,19 @@ const CandidatesMain = ({ getCandidateList, candidates, loading }) => {
                         </TableBody>
                     </StyledTable>
 
-                    {/* <TablePagination
-                    sx={{ px: 2 }}
-                    page={page}
-                    component="div"
-                    className="page"
-                    rowsPerPage={rowsPerPage}
-                    count={dataList.length}
-                    onPageChange={handleChangePage}
-                    rowsPerPageOptions={[5, 10, 25]}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                    nextIconButtonProps={{ 'aria-label': 'Next Page' }}
-                    backIconButtonProps={{ 'aria-label': 'Previous Page' }}
-                /> */}
+                    <TablePagination
+                        sx={{ px: 2 }}
+                        page={page}
+                        component="div"
+                        className="page"
+                        rowsPerPage={rowsPerPage}
+                        count={candidates.length}
+                        onPageChange={handleChangePage}
+                        rowsPerPageOptions={[5, 10, 25]}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        nextIconButtonProps={{ 'aria-label': 'Next Page' }}
+                        backIconButtonProps={{ 'aria-label': 'Previous Page' }}
+                    />
                 </Box>
             )}
         </MainCard>
