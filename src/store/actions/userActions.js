@@ -56,10 +56,6 @@ export const getUserDetails = (navigate) => async (dispatch) => {
             type: USER_DETAILS
         });
         const { data, status } = await API.get('/user/profile');
-        if (status === 400) {
-            Notification('error', data.message);
-            return navigate('/');
-        }
         if (status === 200) {
             const { data: userDetails, message } = data;
             dispatch({

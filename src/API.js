@@ -11,5 +11,11 @@ export default axios.create({
         // 'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${localStorage.getItem('auth_token')}`
     },
-    validateStatus: (status) => status
+    validateStatus: (status) => {
+        if (status === 401) {
+            window.location.href = '/';
+            localStorage.clear();
+        }
+        return status;
+    }
 });
