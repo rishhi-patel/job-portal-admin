@@ -31,6 +31,8 @@ const MainCard = forwardRef(
             btnEvent,
             dltBtn,
             dltBtnEvent,
+            cancelBtnEvent,
+            cancelBtn,
             ...others
         },
         ref
@@ -60,6 +62,11 @@ const MainCard = forwardRef(
                     {dltBtn && (
                         <Button variant="contained" color="error" onClick={dltBtnEvent} sx={{ ml: 2 }}>
                             Delete
+                        </Button>
+                    )}
+                    {cancelBtn && (
+                        <Button variant="contained" color="error" onClick={cancelBtnEvent} sx={{ ml: 2 }}>
+                            Cancel
                         </Button>
                     )}
                 </Box>

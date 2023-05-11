@@ -254,7 +254,7 @@ const JobDetailsForm = ({ details, readOnly, saveJob, setReadOnly, fetchCategoti
                                     />
                                 </Grid>{' '}
                                 {/* BUTTON */}
-                                <button type="submit" id="jobSubmit" style={{ opacity: 0 }}></button>
+                                <button type="submit" id="jobSubmit" style={{ display: 'none', opacity: 0 }} />
                             </Grid>
                         </FormControl>
                     </CardContent>
@@ -279,3 +279,4 @@ const mapDispatchToProps = (dispatch) => ({
     fetchCategotires: () => dispatch(getCategories())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(JobDetailsForm);
+//

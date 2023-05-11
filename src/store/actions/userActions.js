@@ -174,3 +174,38 @@ export const resetPassword = (userDetails, navigate) => async (dispatch) => {
         Notification('error');
     }
 };
+
+export const blockCandidate =
+    ({ _id, isBlocked }) =>
+    async () => {
+        try {
+            const {
+                data: { message },
+                status
+            } = await API.patch(`/candidate/${_id}/block`, { isBlocked });
+            if (status === 200) {
+                Notification('success', message);
+            } else {
+                Notification('error', message);
+            }
+        } catch ({ message }) {
+            Notification('error', message);
+        }
+    };
+
+export const updateCandidateDetails = (_id, candidateDetails, navigate) => async () => {
+    try {
+        const {
+            data: { message },
+            status
+        } = await API.put(`/candidate/${_id}`, candidateDetails);
+        if (status === 200) {
+            Notification('success', message);
+            navigate('/dashboard/candidates');
+        } else {
+            Notification('error', message);
+        }
+    } catch ({ message }) {
+        Notification('error', message);
+    }
+};

@@ -14,7 +14,7 @@ function JobDetailsMain({ getJobDetails, selectedJob, loading, updateJob, delete
     const navigate = useNavigate();
 
     const [readOnly, setReadOnly] = useState(true);
-
+    //
     useEffect(() => {
         getJobDetails(id);
     }, [getJobDetails]);
